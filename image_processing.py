@@ -7,6 +7,8 @@ from matplotlib import pyplot as plt
 from skimage.segmentation import felzenszwalb
 from skimage.segmentation import mark_boundaries
 from skimage.util import img_as_float, img_as_ubyte
+import tesserocr 
+
 
 def image_processing(image, verbose = False):
 
@@ -14,16 +16,29 @@ def image_processing(image, verbose = False):
 
     id = 0
 
-    template_vco = cv2.imread('template_vco.jpg',cv2.IMREAD_GRAYSCALE)
-    template_img = cv2.imread('template_img.jpg',cv2.IMREAD_GRAYSCALE) 
-    template_checkout = cv2.imread('template_checkout.jpg',cv2.IMREAD_GRAYSCALE)     
-    template_continue = cv2.imread('template_continue.jpg',cv2.IMREAD_GRAYSCALE)
+    template_vco = cv2.imread('templates/template_vco.jpg',cv2.IMREAD_GRAYSCALE)
+    #template_img = cv2.imread('template_img.jpg',cv2.IMREAD_GRAYSCALE) 
+    #template_checkout1 = cv2.imread('templates/template_chk1.jpg',cv2.IMREAD_GRAYSCALE)
+    #template_checkout2 = cv2.imread('templates/template_chk2.jpg',cv2.IMREAD_GRAYSCALE)
+    #template_checkout3 = cv2.imread('templates/template_chk3.jpg',cv2.IMREAD_GRAYSCALE)
+    #template_checkout4 = cv2.imread('templates/template_chk4.jpg',cv2.IMREAD_GRAYSCALE)     
+    #template_continue = cv2.imread('template_continue.jpg',cv2.IMREAD_GRAYSCALE)
 
-    element = get_matched_points(image, template_vco, "Visa Checkout", id, verbose)
-    element = get_matched_points(image, template_checkout, "Checkout", id, verbose)
+    #element = get_matched_points(image, template_vco, "Visa Checkout", id, verbose)
+    #element = get_matched_points(image, template_checkout1, "Checkout", id, verbose)
+    #element = get_matched_points(image, template_checkout2, "Checkout", id, verbose)
+    #element = get_matched_points(image, template_checkout3, "Checkout", id, verbose)
+    #element = get_matched_points(image, template_checkout4, "Checkout", id, verbose)
+
+
+    #images = ['templates/template_vco.jpg', 'templates/template_chk1.jpg', 'templates/template_chk2.jpg', 'templates/template_chk3.jpg', 'templates/template_chk4.jpg' ]
+    #with tesserocr.PyTessBaseAPI() as api:
+    #    for img in images:
+    #        api.SetImageFile(img)
+    #        print api.GetUTF8Text()
+    #        print api.AllWordConfidences()
 
     id+=1
-
 
     # img = img_as_float(image)
 
