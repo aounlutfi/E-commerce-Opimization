@@ -13,10 +13,8 @@ import tesserocr
 def image_processing(image, verbose = False):
 
     time_start = time.time()
-
     id = 0
 
-    template_vco = cv2.imread('templates/template_vco.jpg',cv2.IMREAD_GRAYSCALE)
     #template_img = cv2.imread('template_img.jpg',cv2.IMREAD_GRAYSCALE) 
     #template_checkout1 = cv2.imread('templates/template_chk1.jpg',cv2.IMREAD_GRAYSCALE)
     #template_checkout2 = cv2.imread('templates/template_chk2.jpg',cv2.IMREAD_GRAYSCALE)
@@ -24,19 +22,12 @@ def image_processing(image, verbose = False):
     #template_checkout4 = cv2.imread('templates/template_chk4.jpg',cv2.IMREAD_GRAYSCALE)     
     #template_continue = cv2.imread('template_continue.jpg',cv2.IMREAD_GRAYSCALE)
 
-    #element = get_matched_points(image, template_vco, "Visa Checkout", id, verbose)
-    #element = get_matched_points(image, template_checkout1, "Checkout", id, verbose)
-    #element = get_matched_points(image, template_checkout2, "Checkout", id, verbose)
-    #element = get_matched_points(image, template_checkout3, "Checkout", id, verbose)
-    #element = get_matched_points(image, template_checkout4, "Checkout", id, verbose)
+    time_vco_start = time.time()
+    #element = find_visa_checkout(image, id, verbose)
+    time_vco_finish = time.time()
 
+    find_buttons(image, True)
 
-    #images = ['templates/template_vco.jpg', 'templates/template_chk1.jpg', 'templates/template_chk2.jpg', 'templates/template_chk3.jpg', 'templates/template_chk4.jpg' ]
-    #with tesserocr.PyTessBaseAPI() as api:
-    #    for img in images:
-    #        api.SetImageFile(img)
-    #        print api.GetUTF8Text()
-    #        print api.AllWordConfidences()
 
     id+=1
 
@@ -55,10 +46,9 @@ def image_processing(image, verbose = False):
     
     # elements = []
 
-    # time_vco = np.empty(num_segments+1)
     # time_image = np.empty(num_segments+1)
-    # time_chkout = np.empty(num_segments+1)
-    # time_continue = np.empty(num_segments+1)
+    # # time_chkout = np.empty(num_segments+1)
+    # # time_continue = np.empty(num_segments+1)
     # time_segment_start = np.empty(num_segments+1)
     # time_segment_finish = np.empty(num_segments+1)
     
@@ -69,7 +59,7 @@ def image_processing(image, verbose = False):
     #     segment_image = (segment_image*255).astype(int)
 
     #     up_ratio = 0.6
-    #     down_ratio = 0.0.5
+    #     down_ratio = 0.1
     #     img_up_size = tuple([up_ratio*image.shape[0],up_ratio*image.shape[1]])
     #     img_down_size = tuple([down_ratio*image.shape[0],down_ratio*image.shape[1]])
         
@@ -81,15 +71,8 @@ def image_processing(image, verbose = False):
 
     #             segment_image = np.asarray(ImageOps.expand(Image.fromarray(np.uint8(segment_image)),border=200,fill='white'))
 
-    #             #test all templates
-    #             elements.append(get_matched_points(segment_image, template_vco, "Visa Checkout", id, verbose))
-    #             time_vco[n+1] = time.time()
-    #             elements.append(get_matched_points(segment_image, template_img, "Image", id, verbose))
-    #             time_image[n+1] = time.time()
-    #             elements.append(get_matched_points(segment_image, template_checkout, "Checkout", id, verbose))
-    #             time_chkout[n+1] = time.time()
-    #             elements.append(get_matched_points(segment_image, template_continue, "Continue", id, verbose))
-    #             time_continue[n+1] = time.time()
+    #             #find buttons
+
 
     #         else:
     #             print "Skipped segment " + str(n) + " because too small"
@@ -98,7 +81,7 @@ def image_processing(image, verbose = False):
     #     time_segment_finish[n+1] = time.time()
 
 
-    # time_end = time.time()
+    time_end = time.time()
 
     # print "Elements: "
     # for element in elements:
@@ -109,28 +92,27 @@ def image_processing(image, verbose = False):
     #     print "Dimentions: " + str(element["dimentions"])
     #     #print "Text: " + elem.text
 
-    # debug = "Total Time: " + str(time_end-time_start) + "\n"
-    # debug += "Segmentation Time: " + str(np.mean(time_segmentation - time_start)) + "\n"
-    # debug += "Average VCO Time: " + str(np.mean(time_vco - time_segmentation)) + "\n"
-    # debug += "Average Image Time: " + str(np.mean(time_image - time_vco)) + "\n"
-    # debug += "Average Checkout Time: " + str(np.mean(time_chkout - time_image)) + "\n"
-    # debug += "Average Continue Time: " + str(np.mean(time_continue - time_image)) + "\n"
-    # debug += "Average segment time: " + str(np.mean(time_segment_finish - time_segment_start)) + "\n"
-    # debug += "---------------------------------------\n"
-    # debug += "Segments Times: \n"
-    # debug += str(time_segment_finish - time_segment_start)
+    debug = "\n-----------------NEW TEST----------------------------\n"
+    debug += "Total Time: " + str(time_end-time_start) + "\n"
+    debug += "Segmentation Time: " + str(np.mean(time_segmentation - time_start)) + "\n"
+    debug += "Average VCO Time: " + str(np.mean(time_vco_finish - time_vco_start)) + "\n"
+    debug += "Average segment time: " + str(np.mean(time_segment_finish - time_segment_start)) + "\n"
+    debug += "---------------------------------------\n"
+    debug += "Segments Times: \n"
+    debug += str(time_segment_finish - time_segment_start)
+    debug += "-----------------END OF TEST-----------------------------\n"
 
-    # file = open("debug.txt", 'w')
-    # file.write(debug)
-    #return elements
+    file = open("debug.txt", 'a')
+    file.write(debug)
+    return elements
 
 
-def get_matched_points(image, template, type, id, verbose = False):
+def find_visa_checkout(image, id, verbose = False):
     MIN_MATCH_COUNT = 10
-    if(type == "Visa Checkout"):
-        vco = True
-    else:
-        vco = False
+    name = "Visa Checkout"
+    vco = True
+    template = cv2.imread('templates/template_vco.jpg',cv2.IMREAD_GRAYSCALE)
+
 
     # Initiate SIFT detector
     sift = cv2.xfeatures2d.SIFT_create()
@@ -204,28 +186,28 @@ def get_matched_points(image, template, type, id, verbose = False):
             center = calculate_center(boundries["top"], boundries["buttom"], boundries["left"], boundries["right"])
             dimentions = calculate_dimentions(boundries["top"], boundries["buttom"], boundries["left"], boundries["right"])
 
-            element = {"id": id, "type": type, "boundries": boundries, "center": center, "dimentions": dimentions, "image": cropped}
+            element = {"id": id, "type": name, "boundries": boundries, "center": center, "dimentions": dimentions, "image": cropped}
             id+=1
 
-            print "Matched " + type
+            print "Matched " + name
             if(True):
                 print "ID: " + str(element["id"])
                 print "Type: " + element["type"] 
                 print "Boundries: " + str(element["boundries"])
                 print "Center: " + str(element["center"])
                 print "Dimentions: " + str(element["dimentions"])
-                #print "Text: " + elem.text
+                print "Text: " + element["type"]
                 plt.imshow(element["image"], 'gray'),plt.show()
                 print "-----------------"
 
             return element
 
         except Exception, e:
-            print "Not enough good matches for " + type
+            print "Not enough good matches for " + name
             return None
     
     else:
-        print ("Not enough matches are found - %d/%d for " % (len(good),MIN_MATCH_COUNT)) + type
+        print ("Not enough matches are found - %d/%d for " % (len(good),MIN_MATCH_COUNT)) + name
         return None
 
 
@@ -300,3 +282,50 @@ def calculate_dimentions(top, buttom, left, right):
 
 
 
+def find_buttons(image, verbose = False):
+
+    _,thresh = cv2.threshold(image,150,255,cv2.THRESH_BINARY_INV) # threshold
+    kernel = cv2.getStructuringElement(cv2.MORPH_CROSS,(3,3))
+    dilated = cv2.dilate(thresh,kernel,iterations = 10) # dilate
+    _, contours, _ = cv2.findContours(dilated,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE) # get contours
+
+    # for each contour found, draw a rectangle around it on original image
+    for contour in contours:
+        # get rectangle bounding contour
+        [x,y,w,h] = cv2.boundingRect(contour)
+
+        # discard areas that are too large
+        if h>400 or h<40 or w<40:
+            continue
+
+        # draw rectangle around contour on original image
+        cv2.rectangle(image,(x,y),(x+w,y+h),(255,0,255),2)
+
+    # write original image with added contours to disk  
+    if(verbose):
+        plt.imshow(image), plt.show()
+
+    #OCR
+    #images = ['templates/template_vco.jpg', 'templates/template_chk1.jpg', 'templates/template_chk2.jpg', 'templates/template_chk3.jpg', 'templates/template_chk4.jpg' ]
+    #with tesserocr.PyTessBaseAPI() as api:
+    #    for img in images:
+    #        api.SetImageFile(img)
+    #        print api.GetUTF8Text()
+    #        print api.AllWordConfidences()
+
+    # elements = []
+    # element = {"id": id, "type": name, "boundries": boundries, "center": center, "dimentions": dimentions, "image": cropped}
+    # id+=1
+
+    # print "Matched " + name
+    # if(True):
+    #     print "ID: " + str(element["id"])
+    #     print "Type: " + element["type"] 
+    #     print "Boundries: " + str(element["boundries"])
+    #     print "Center: " + str(element["center"])
+    #     print "Dimentions: " + str(element["dimentions"])
+    #     print "Text: " + element["type"]
+    #     plt.imshow(element["image"], 'gray'),plt.show()
+    #     print "-----------------"
+
+    # return element
