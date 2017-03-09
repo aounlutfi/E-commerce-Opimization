@@ -11,74 +11,28 @@ import tesserocr
 
 
 def image_processing(image, verbose = False):
-
+    
+    if verbose:
+        print "---NEW IMAGE---"
     time_start = time.time()
     id = 0
-
-    #template_img = cv2.imread('template_img.jpg',cv2.IMREAD_GRAYSCALE) 
-    #template_checkout1 = cv2.imread('templates/template_chk1.jpg',cv2.IMREAD_GRAYSCALE)
-    #template_checkout2 = cv2.imread('templates/template_chk2.jpg',cv2.IMREAD_GRAYSCALE)
-    #template_checkout3 = cv2.imread('templates/template_chk3.jpg',cv2.IMREAD_GRAYSCALE)
-    #template_checkout4 = cv2.imread('templates/template_chk4.jpg',cv2.IMREAD_GRAYSCALE)     
-    #template_continue = cv2.imread('template_continue.jpg',cv2.IMREAD_GRAYSCALE)
 
     time_vco_start = time.time()
     #element = find_visa_checkout(image, id, verbose)
     time_vco_finish = time.time()
 
-    find_buttons(image, True)
+    time_button_start = time.time()
+    find_buttons_seg(image, True)
+    time_button_finish = time.time()
+
 
 
     id+=1
 
-    # img = img_as_float(image)
-
-    # #perform segmentation // min size directly proportional to num of segments
-    # segments = felzenszwalb(img, scale=200, sigma=0.5, min_size=100)
-    # num_segments =  len(np.unique(segments))
-    # print "number of Segments: " + str(num_segments)
-
-    # if(verbose):
-    #     segmented_img = img_as_ubyte(mark_boundaries(img, segments))
-    #     plt.imshow(segmented_img), plt.show()
-
-    # time_segmentation = time.time()
     
-    # elements = []
-
-    # time_image = np.empty(num_segments+1)
-    # # time_chkout = np.empty(num_segments+1)
-    # # time_continue = np.empty(num_segments+1)
-    # time_segment_start = np.empty(num_segments+1)
-    # time_segment_finish = np.empty(num_segments+1)
-    
-    # for n in range(0, num_segments):
-    #     time_segment_start[n+1] = time.time()
-    #     boundries = find_segment_corners(segments, n)
-    #     segment_image = image[boundries["left"]:boundries["right"], boundries["buttom"]:boundries["top"]]
-    #     segment_image = (segment_image*255).astype(int)
-
-    #     up_ratio = 0.6
-    #     down_ratio = 0.1
-    #     img_up_size = tuple([up_ratio*image.shape[0],up_ratio*image.shape[1]])
-    #     img_down_size = tuple([down_ratio*image.shape[0],down_ratio*image.shape[1]])
-        
-    #     if( segment_image.shape[0]*segment_image.shape[1]< img_up_size[0]* img_up_size[1]):
-    #         if( segment_image.shape[0]*segment_image.shape[1]> img_down_size[0]* img_down_size[1]):
-
-    #             if (verbose):
-    #                 plt.imshow(segment_image, "gray"), plt.show()
-
-    #             segment_image = np.asarray(ImageOps.expand(Image.fromarray(np.uint8(segment_image)),border=200,fill='white'))
-
-    #             #find buttons
+    elements = []
 
 
-    #         else:
-    #             print "Skipped segment " + str(n) + " because too small"
-    #     else:
-    #         print "Skipped segment " + str(n) + " because too large" 
-    #     time_segment_finish[n+1] = time.time()
 
 
     time_end = time.time()
@@ -94,12 +48,11 @@ def image_processing(image, verbose = False):
 
     debug = "\n-----------------NEW TEST----------------------------\n"
     debug += "Total Time: " + str(time_end-time_start) + "\n"
-    debug += "Segmentation Time: " + str(np.mean(time_segmentation - time_start)) + "\n"
     debug += "Average VCO Time: " + str(np.mean(time_vco_finish - time_vco_start)) + "\n"
-    debug += "Average segment time: " + str(np.mean(time_segment_finish - time_segment_start)) + "\n"
-    debug += "---------------------------------------\n"
-    debug += "Segments Times: \n"
-    debug += str(time_segment_finish - time_segment_start)
+    debug += "Average Button time: " + str(np.mean(time_button_finish - time_button_start)) + "\n"
+    #debug += "---------------------------------------\n"
+    #debug += "Segments Times: \n"
+    #debug += str(time_segment_finish - time_segment_start)
     debug += "-----------------END OF TEST-----------------------------\n"
 
     file = open("debug.txt", 'a')
@@ -281,14 +234,120 @@ def calculate_dimentions(top, buttom, left, right):
     return dimentions
 
 
+def find_buttons_seg(image, verbose = False):
+    
+    kernel_edge_enhance = np.array([[-1,-1,-1,-1,-1],
+                                 [-1,2,2,2,-1],
+                                 [-1,2,8,2,-1],
+                                 [-1,2,2,2,-1],
+                                 [-1,-1,-1,-1,-1]]) / 8.0
 
-def find_buttons(image, verbose = False):
+    image = cv2.filter2D(image, -1, kernel_edge_enhance)
+
+    img = img_as_float(image)
+
+    #perform segmentation // min size directly proportional to num of segments
+    segments = felzenszwalb(img, scale=500, sigma=6, min_size=250)
+    num_segments =  len(np.unique(segments))
+    print "number of Segments: " + str(num_segments)
+
+    if(verbose):
+        segmented_img = img_as_ubyte(mark_boundaries(img, segments))
+        plt.imshow(segmented_img), plt.show()
+
+    verbose = False
+
+    for n in range(0, num_segments):
+
+            boundries = find_segment_corners(segments, n)
+            segment_image = image[boundries["left"]:boundries["right"], boundries["buttom"]:boundries["top"]]
+            segment_image = (segment_image*255).astype(int)
+
+            up_ratio = 0.6
+            down_ratio = 0.1
+            img_up_size = tuple([up_ratio*image.shape[0],up_ratio*image.shape[1]])
+            img_down_size = tuple([down_ratio*image.shape[0],down_ratio*image.shape[1]])
+            
+            # if( segment_image.shape[0] > img_down_size[0] and segment_image.shape[1] > img_down_size[1]):
+            #     if( segment_image.shape[0] < img_up_size[0] and segment_image.shape[1] > img_up_size[1]):
+
+            img = Image.fromarray(np.uint8(segment_image*255))
+            
+            try:
+
+                text = tesserocr.image_to_text(img)
+
+                if verbose:
+                    print text
+                    plt.imshow(segment_image, "gray"), plt.show()
+
+                cnt = "continue"
+                shp = "shopping"
+                chk = "checkout"
+                visa = "visa"
+                book = "book"
+                pch = "purchase"
+                scu = "secure"
+                pay = "pay"
+
+                text = text.lower()
+
+                if(shp not in text and len(text.split())<4):
+                    if visa in text.split() and chk in text.split():
+                        print "matched visa checkout button"
+                        print text
+                        plt.imshow(segment_image, "gray"), plt.show()
+                    elif (chk in text.split()):
+                        print "matched checkout button"
+                        print text
+                        plt.imshow(segment_image, "gray"), plt.show()
+                    elif (cnt in text.split()):
+                        print "matched continue button"
+                        print text
+                        plt.imshow(segment_image, "gray"), plt.show()
+                    elif book in text.split():
+                        print "matched book button"
+                        print text
+                        plt.imshow(segment_image, "gray"), plt.show()
+                    elif pch in text.split():
+                        print "matched purchase button"
+                        print text
+                        plt.imshow(segment_image, "gray"), plt.show()
+                    elif scu in text.split():
+                        print "matched secure button"
+                        print text
+                        plt.imshow(segment_image, "gray"), plt.show()
+                    else:
+                        print "No button found in segment " + str(n)
+                else:
+                    print "No button found in segment " + str(n)
+            except Exception, e:
+                pass
+
+            
+
+
+            #     else:
+            #         print "Skipped segment " + str(n) + " because too small"
+            # else:
+            #     print "Skipped segment " + str(n) + " because too large" 
+
+def find_buttons_cont(image, verbose = False):
 
     _,thresh = cv2.threshold(image,150,255,cv2.THRESH_BINARY_INV) # threshold
-    kernel = cv2.getStructuringElement(cv2.MORPH_CROSS,(3,3))
+    kernel = cv2.getStructuringElement(cv2.MORPH_CROSS,(5,5))
     dilated = cv2.dilate(thresh,kernel,iterations = 10) # dilate
     _, contours, _ = cv2.findContours(dilated,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE) # get contours
 
+    kernel_edge_enhance = np.array([[-1,-1,-1,-1,-1],
+                                 [-1,2,2,2,-1],
+                                 [-1,2,8,2,-1],
+                                 [-1,2,2,2,-1],
+                                 [-1,-1,-1,-1,-1]]) / 8.0
+
+    image = cv2.filter2D(image, -1, kernel_edge_enhance)
+
+    verbose = False
     # for each contour found, draw a rectangle around it on original image
     for contour in contours:
         # get rectangle bounding contour
@@ -298,20 +357,56 @@ def find_buttons(image, verbose = False):
         if h>400 or h<40 or w<40:
             continue
 
+        cropped = image[y:y+h,x:x+w]
+
+        img = Image.fromarray(np.uint8(cropped*255))
+
+        text = tesserocr.image_to_text(img)
+
+        if verbose:
+            print text
+            plt.imshow(cropped, "gray"), plt.show()
+
+        cnt = "continue"
+        chk = "checkout"
+        visa = "visa"
+        book = "book"
+        pch = "purchase"
+        scu = "secure"
+        pay = "pay"
+
+        text = text.lower()
+
+
+        if(visa not in text and len(text.split())<4):
+            if (chk in text.split()):
+                print "matched checkout button"
+                print text
+                plt.imshow(cropped, "gray"), plt.show()
+            elif (cnt in text.split()):
+                print "matched checkout button"
+                print text
+                plt.imshow(cropped, "gray"), plt.show()
+            elif book in text.split():
+                print "matched checkout button"
+                print text
+                plt.imshow(cropped, "gray"), plt.show()
+            elif pch in text.split():
+                print "matched checkout button"
+                print text
+                plt.imshow(cropped, "gray"), plt.show()
+            elif scu in text.split():
+                print "matched checkout button"
+                print text
+                plt.imshow(cropped, "gray"), plt.show()
+
         # draw rectangle around contour on original image
-        cv2.rectangle(image,(x,y),(x+w,y+h),(255,0,255),2)
+        cv2.rectangle(image,(x,y),(x+w,y+h),(0,0,0),2)
 
     # write original image with added contours to disk  
     if(verbose):
         plt.imshow(image), plt.show()
 
-    #OCR
-    #images = ['templates/template_vco.jpg', 'templates/template_chk1.jpg', 'templates/template_chk2.jpg', 'templates/template_chk3.jpg', 'templates/template_chk4.jpg' ]
-    #with tesserocr.PyTessBaseAPI() as api:
-    #    for img in images:
-    #        api.SetImageFile(img)
-    #        print api.GetUTF8Text()
-    #        print api.AllWordConfidences()
 
     # elements = []
     # element = {"id": id, "type": name, "boundries": boundries, "center": center, "dimentions": dimentions, "image": cropped}

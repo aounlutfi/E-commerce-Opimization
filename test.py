@@ -15,7 +15,7 @@ img5 = cv2.imread('samples/merchant5.jpg',cv2.IMREAD_GRAYSCALE)
 img6 = cv2.imread('samples/merchant6.jpg',cv2.IMREAD_GRAYSCALE)    
 img7 = cv2.imread('samples/merchant7.jpg',cv2.IMREAD_GRAYSCALE)    
 img8 = cv2.imread('samples/merchant8.jpg',cv2.IMREAD_GRAYSCALE)
-img9 = cv2.imread('samples/merchant8.jpg',cv2.IMREAD_GRAYSCALE)
+img9 = cv2.imread('samples/merchant9.jpg',cv2.IMREAD_GRAYSCALE)
 
 elements1 = im.image_processing(img1, True)
 elements2 = im.image_processing(img2, True)
