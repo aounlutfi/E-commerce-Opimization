@@ -1,0 +1,90 @@
+
+-------------------NEW TEST-------------------------------
+Total Time: 69.794563055
+Pre-processing Time: 11.2955770493
+Total segmentation Time: 58.4989860058
+Number of Segments: 69
+Average Segments Time: 0.847811391388
+Total Number of Elements: 4
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 61.448182106
+Pre-processing Time: 8.38061213493
+Total segmentation Time: 53.0675699711
+Number of Segments: 73
+Average Segments Time: 0.726953013303
+Total Number of Elements: 11
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 97.6072969437
+Pre-processing Time: 10.1879146099
+Total segmentation Time: 87.4193823338
+Number of Segments: 139
+Average Segments Time: 0.628916419667
+Total Number of Elements: 12
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 39.2697899342
+Pre-processing Time: 4.23861312866
+Total segmentation Time: 35.0311768055
+Number of Segments: 78
+Average Segments Time: 0.449117651353
+Total Number of Elements: 9
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 87.2180500031
+Pre-processing Time: 9.29318070412
+Total segmentation Time: 77.9248692989
+Number of Segments: 96
+Average Segments Time: 0.811717388531
+Total Number of Elements: 4
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 133.967735052
+Pre-processing Time: 15.5345010757
+Total segmentation Time: 118.433233976
+Number of Segments: 129
+Average Segments Time: 0.918087085088
+Total Number of Elements: 8
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 64.5817558765
+Pre-processing Time: 9.18962574005
+Total segmentation Time: 55.3921301365
+Number of Segments: 90
+Average Segments Time: 0.615468112628
+Total Number of Elements: 8
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 47.9634928703
+Pre-processing Time: 3.73262071609
+Total segmentation Time: 44.2308721542
+Number of Segments: 130
+Average Segments Time: 0.34023747811
+Total Number of Elements: 3
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 89.0598330498
+Pre-processing Time: 7.75180387497
+Total segmentation Time: 81.3080291748
+Number of Segments: 136
+Average Segments Time: 0.597853155697
+Total Number of Elements: 9
+
+-----------------END OF TEST-----------------------------

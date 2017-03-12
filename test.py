@@ -3,9 +3,12 @@ import web_capture as cap
 import image_processing as im
 from collections import Counter
 import cv2
+import time
 
+verbose = False
+open('image_processing_debug.txt', 'w').close()
+open('elements.txt', 'w').close()
 
-open('debug.txt', 'w').close()
 
 img1 = cv2.imread('samples/merchant1.jpg',cv2.IMREAD_GRAYSCALE)    
 img2 = cv2.imread('samples/merchant2.jpg',cv2.IMREAD_GRAYSCALE)    
@@ -17,23 +20,18 @@ img7 = cv2.imread('samples/merchant7.jpg',cv2.IMREAD_GRAYSCALE)
 img8 = cv2.imread('samples/merchant8.jpg',cv2.IMREAD_GRAYSCALE)
 img9 = cv2.imread('samples/merchant9.jpg',cv2.IMREAD_GRAYSCALE)
 
-elements1 = im.image_processing(img1, True)
-elements2 = im.image_processing(img2, True)
-elements3 = im.image_processing(img3, True)
-elements4 = im.image_processing(img4, True)
-elements5 = im.image_processing(img5, True)
-elements6 = im.image_processing(img6, True)
-elements7 = im.image_processing(img7, True)
-elements8 = im.image_processing(img8, True)
-elements9 = im.image_processing(img9, True)
+start = time.time()
 
-# debug = "Elements 1: \n" + str(elements1) + "\n"
-# debug += "---------------------------------------\n"
-# debug += "Elements 2: \n" + str(elements2) + "\n"
-# debug += "---------------------------------------\n"
-# debug += "Elements 3: \n" + str(elements3) + "\n"
-# debug += "---------------------------------------\n"
-# debug += "Elements 4: \n" + str(elements4) + "\n"
+elements1 = im.image_processing(img1, verbose)
+elements2 = im.image_processing(img2, verbose)
+elements3 = im.image_processing(img3, verbose)
+elements4 = im.image_processing(img4, verbose)
+elements5 = im.image_processing(img5, verbose)
+elements6 = im.image_processing(img6, verbose)
+elements7 = im.image_processing(img7, verbose)
+elements8 = im.image_processing(img8, verbose)
+elements9 = im.image_processing(img9, verbose)
 
-# file = open("elements.txt", 'w')
-# file.write(debug)
+end = time.time()
+
+print "Total time: " + str(end - start)
