@@ -2,13 +2,21 @@ import numpy as np
 import cv2
 import time
 import operator
-import tesserocr
 
+from pytesser import image_to_string
 from PIL import Image, ImageOps
 from skimage.segmentation import felzenszwalb
 from skimage.segmentation import mark_boundaries
 from skimage.util import img_as_float, img_as_ubyte
 
+TOP = 0
+LEFT = 1
+RIGHT = 2
+BUTTOM = 3
+X = 0
+Y = 1
+H = 0
+W = 1
 
 def image_processing(image, verbose=False):
 
@@ -32,7 +40,7 @@ def image_processing(image, verbose=False):
         elem += "-------\n"
     elem += "\n-----------------END OF TEST-------------------------------\n"
 
-    file = open("elements.txt", 'a')
+    file = open("tests/elements.txt", 'a')
     file.write(elem)
     file.close()
 
@@ -50,7 +58,7 @@ def image_processing(image, verbose=False):
     debug += "Total Number of Elements: " + str(len(elements)) + "\n"
     debug += "\n-----------------END OF TEST-----------------------------\n"
 
-    file = open("image_processing_debug.txt", 'a')
+    file = open("tests/image_processing_debug.txt", 'a')
     file.write(debug)
     file.close()
 
@@ -78,19 +86,19 @@ def find_segment_corners(array, segment):
     #left
     minx = min([q[0] for q in found])
 
-    boundry_list = {"top" : maxy, "left": minx, "right": maxx, "buttom": miny}
+    boundry_list = (maxy, minx, maxx, miny)
     return boundry_list
 
 def calculate_center(top, buttom, left, right):
     x = (top + buttom)/2
     y = (left + right)/2
-    center = {"x": x, "y":y}
+    center = (x,y)
     return center
 
 def calculate_dimentions(top, buttom, left, right):
     h = (top - buttom)
     w = (right - left)
-    dimentions = {"h": h, "w":w}
+    dimentions = (h,w)
     return dimentions
 
 
@@ -112,7 +120,7 @@ def find_buttons_seg(image, verbose=False):
 
     if(verbose):
         segmented_img = img_as_ubyte(mark_boundaries(img, segments))
-        cv2.imshow(segmented_img)
+        # cv2.imshow("image", segmented_img)
 
     seg_time_start = []
     seg_time_finish = []
@@ -122,18 +130,18 @@ def find_buttons_seg(image, verbose=False):
         seg_time_start.append(time.time())
 
         boundries = find_segment_corners(segments, n)
-        segment_image = image[boundries["left"]:boundries["right"], boundries["buttom"]:boundries["top"]]
+        segment_image = image[boundries[LEFT]:boundries[RIGHT], boundries[BUTTOM]:boundries[TOP]]
         segment_image = (segment_image*255).astype(int)
 
         img = Image.fromarray(np.uint8(segment_image*255))
         
         try:
 
-            text = tesserocr.image_to_text(img)
+            text = image_to_string(img)
 
             if verbose:
                 print text
-                cv2.imshow(segment_image)
+                # cv2.imshow(("image", segment_image)
 
             cnt = "continue"
             shp = "shopping"
@@ -148,47 +156,47 @@ def find_buttons_seg(image, verbose=False):
 
             if(len(text.split())<4):
                 if visa in text.split() and chk in text.split():
-                    elements.append(add_element(boundries, "Visa Checkout", text, id, segment_image))
+                    elements.append(add_element(boundries, "Visa Checkout", text, id))
                     id+=1
                     print "matched visa checkout button"
                 elif (chk in text.split()):
-                    elements.append(add_element(boundries, "Checkout", text, id, segment_image))
+                    elements.append(add_element(boundries, "Checkout", text, id))
                     id+=1
                     print "matched checkout button"
                 elif book in text.split():
-                    elements.append(add_element(boundries, "Checkout", text, id, segment_image))
+                    elements.append(add_element(boundries, "Checkout", text, id))
                     id+=1
                     print "matched book button"
                 elif pch in text.split():
-                    elements.append(add_element(boundries, "Checkout", text, id, segment_image))
+                    elements.append(add_element(boundries, "Checkout", text, id))
                     id+=1
                     print "matched purchase button"
                 elif scu in text.split():
-                    elements.append(add_element(boundries, "Checkout", text, id, segment_image))
+                    elements.append(add_element(boundries, "Checkout", text, id))
                     id+=1
                     print "matched secure button"
                 elif shp in text and cnt in text:
-                    elements.append(add_element(boundries, "Continue Shopping", text, id, segment_image))
+                    elements.append(add_element(boundries, "Continue Shopping", text, id))
                     id+=1
                 else:
                     print "No button found in segment " + str(n)
             else:
                 print "No button found in segment " + str(n)
         except Exception, e:
-            pass
+            print e
 
         seg_time_finish.append(time.time())
 
     return elements, num_segments, list(map(operator.sub, seg_time_finish, seg_time_start))
 
-def add_element(boundries, name, text, id, img):
+def add_element(boundries, name, text, id):
     
     text = "".join([s for s in text.strip().splitlines(True) if s.strip("\r\n").strip()])
     text = text.encode('ascii', 'ignore').decode('ascii')
 
-    center = calculate_center(boundries["top"], boundries["buttom"], boundries["left"], boundries["right"])
-    dimentions = calculate_dimentions(boundries["top"], boundries["buttom"], boundries["left"], boundries["right"])
+    center = calculate_center(boundries[TOP], boundries[BUTTOM], boundries[LEFT], boundries[RIGHT])
+    dimentions = calculate_dimentions(boundries[TOP], boundries[BUTTOM], boundries[LEFT], boundries[RIGHT])
 
-    element = {"id": id, "type": name, "boundries": boundries, "center": center, "dimentions": dimentions, "text":text, "image": img}
+    element = {"id": id, "type": name, "boundries": boundries, "center": center, "dimentions": dimentions, "text":text}
 
     return element

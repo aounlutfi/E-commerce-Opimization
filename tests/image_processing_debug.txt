@@ -88,3 +88,63 @@ Average Segments Time: 0.597853155697
 Total Number of Elements: 9
 
 -----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 59.7709999084
+Pre-processing Time: 9.9509999752
+Total segmentation Time: 49.8199999332
+Number of Segments: 69
+Average Segments Time: 0.72202898454
+Total Number of Elements: 0
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 62.5510001183
+Pre-processing Time: 11.742000103
+Total segmentation Time: 50.8090000153
+Number of Segments: 69
+Average Segments Time: 0.736362319062
+Total Number of Elements: 0
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 73.628000021
+Pre-processing Time: 9.48200011253
+Total segmentation Time: 64.1459999084
+Number of Segments: 69
+Average Segments Time: 0.929652172586
+Total Number of Elements: 5
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 74.7920000553
+Pre-processing Time: 10.2610001564
+Total segmentation Time: 64.5309998989
+Number of Segments: 69
+Average Segments Time: 0.935231882593
+Total Number of Elements: 5
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 73.7970001698
+Pre-processing Time: 9.74300026894
+Total segmentation Time: 64.0539999008
+Number of Segments: 69
+Average Segments Time: 0.928318839142
+Total Number of Elements: 5
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 71.8090000153
+Pre-processing Time: 9.6819999218
+Total segmentation Time: 62.1270000935
+Number of Segments: 69
+Average Segments Time: 0.900391305702
+Total Number of Elements: 5
+
+-----------------END OF TEST-----------------------------

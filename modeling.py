@@ -1,11 +1,17 @@
 from collections import Counter
 
+TOP = 0
+LEFT = 1
+RIGHT = 2
+BUTTOM = 3
+X = 0
+Y = 1
+H = 0
+W = 1
+
 def modeling(elements, image, verbose):
 
 	elements = clean_duplicates(elements, verbose)
-
-
-
 
 
 def clean_duplicates(elements, verbose):
