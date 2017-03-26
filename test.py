@@ -1,10 +1,13 @@
+import cv2
+import time
+
 import web_classification as clas
 import web_capture as cap
 import image_processing as im
 import modeling as m
+
 from collections import Counter
-import cv2
-import time
+
 
 verbose = True
 # open('image_processing_debug.txt', 'w').close()

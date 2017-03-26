@@ -1,10 +1,9 @@
-from __future__ import print_function
+import re
 
 from bs4 import BeautifulSoup
 from nltk.corpus import stopwords # Import the stop word list
 from collections import Counter
 
-import re
 
 #set verbose to True for detailed output
 def web_classification(html, verbose = False):

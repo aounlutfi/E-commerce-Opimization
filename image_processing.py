@@ -2,38 +2,35 @@ import numpy as np
 import cv2
 import time
 import operator
+import tesserocr
 
 from PIL import Image, ImageOps
-from matplotlib import pyplot as plt
 from skimage.segmentation import felzenszwalb
 from skimage.segmentation import mark_boundaries
 from skimage.util import img_as_float, img_as_ubyte
-import tesserocr 
 
 
-def image_processing(image, verbose = False):
-    
+def image_processing(image, verbose=False):
+
     print "---NEW IMAGE---"
 
     time_start = time.time()
 
-    elements, seg_num, seg_times  = find_buttons_seg(image, verbose)
+    elements, seg_num, seg_times = find_buttons_seg(image, verbose)
 
     time_end = time.time()
 
-    elements = verify_elements(elements)
-
     elem = "\n-------------------NEW TEST-------------------------------\n"
-    elem+= "Elements " + str(len(elements)) + ": \n"
+    elem += "Elements " + str(len(elements)) + ": \n"
     for element in elements:
-        elem+= "ID: " + str(element["id"])+ ": \n"
-        elem+= "Type: " + element["type"] + ": \n"
-        elem+= "Boundries: " + str(element["boundries"])+ ": \n"
-        elem+= "Center: " + str(element["center"])+ ": \n"
-        elem+= "Dimentions: " + str(element["dimentions"])+ ": \n"
-        elem+= "Text: " + element["text"]+ ": \n"
-        elem+="-------\n"
-    elem+= "\n-----------------END OF TEST-------------------------------\n"
+        elem += "ID: " + str(element["id"])+ ": \n"
+        elem += "Type: " + element["type"] + ": \n"
+        elem += "Boundries: " + str(element["boundries"])+ ": \n"
+        elem += "Center: " + str(element["center"])+ ": \n"
+        elem += "Dimentions: " + str(element["dimentions"])+ ": \n"
+        elem += "Text: " + element["text"]+ ": \n"
+        elem += "-------\n"
+    elem += "\n-----------------END OF TEST-------------------------------\n"
 
     file = open("elements.txt", 'a')
     file.write(elem)
@@ -49,7 +46,7 @@ def image_processing(image, verbose = False):
     debug += "Pre-processing Time: " + str(pp_time) + "\n"
     debug += "Total segmentation Time: " + str(total_seg_time) + "\n"
     debug += "Number of Segments: " + str(seg_num) + "\n"
-    debug += "Average Segments Time: " + str (avg_seg_time) + "\n"
+    debug += "Average Segments Time: " + str(avg_seg_time) + "\n"
     debug += "Total Number of Elements: " + str(len(elements)) + "\n"
     debug += "\n-----------------END OF TEST-----------------------------\n"
 
@@ -61,7 +58,7 @@ def image_processing(image, verbose = False):
 
 
 def find_segment_corners(array, segment):
-    
+
     #find segment boundries
     width = len(array[0])
     found = []
@@ -71,16 +68,16 @@ def find_segment_corners(array, segment):
             if col == segment:
                 found.append((posn // width, posn % width))
             posn += 1
-    
-    #buttom 
-    miny=min([q[1] for q in found])
+
+    #buttom
+    miny = min([q[1] for q in found])
     #top
-    maxy=max([q[1] for q in found])
+    maxy = max([q[1] for q in found])
     #right
-    maxx=max([q[0] for q in found])
+    maxx = max([q[0] for q in found])
     #left
-    minx=min([q[0] for q in found])
-    
+    minx = min([q[0] for q in found])
+
     boundry_list = {"top" : maxy, "left": minx, "right": maxx, "buttom": miny}
     return boundry_list
 
@@ -97,15 +94,15 @@ def calculate_dimentions(top, buttom, left, right):
     return dimentions
 
 
-def find_buttons_seg(image, verbose = False):
-    
+def find_buttons_seg(image, verbose=False):
+
     id = 0
 
-    kernel_edge_enhance = np.array([[-1,-1,-1,-1,-1],
-                                 [-1,2,2,2,-1],
-                                 [-1,2,8,2,-1],
-                                 [-1,2,2,2,-1],
-                                 [-1,-1,-1,-1,-1]]) / 8.0
+    kernel_edge_enhance = np.array([[-1, -1, -1, -1, -1],
+                                 [-1, 2, 2, 2, -1],
+                                 [-1, 2, 8, 2, -1],
+                                 [-1, 2, 2, 2, -1],
+                                 [-1, -1, -1, -1, -1]]) / 8.0
     image = cv2.filter2D(image, -1, kernel_edge_enhance)
 
     img = img_as_float(image)
@@ -115,7 +112,7 @@ def find_buttons_seg(image, verbose = False):
 
     if(verbose):
         segmented_img = img_as_ubyte(mark_boundaries(img, segments))
-        plt.imshow(segmented_img), plt.show()
+        cv2.imshow(segmented_img)
 
     seg_time_start = []
     seg_time_finish = []
@@ -136,7 +133,7 @@ def find_buttons_seg(image, verbose = False):
 
             if verbose:
                 print text
-                plt.imshow(segment_image, "gray"), plt.show()
+                cv2.imshow(segment_image)
 
             cnt = "continue"
             shp = "shopping"
@@ -195,15 +192,3 @@ def add_element(boundries, name, text, id, img):
     element = {"id": id, "type": name, "boundries": boundries, "center": center, "dimentions": dimentions, "text":text, "image": img}
 
     return element
-
-def verify_elements(elements):
-    types = ["Visa Checkout", "Checkout", "Continue Shopping"]
-
-    vco = []
-    chk = []
-    cntsh = []
-
-    return elements
-
-def clean_type(elem_list):
-    return elem_list
