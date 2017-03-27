@@ -25,10 +25,10 @@ def byteify(input):
 # open('image_processing_debug.txt', 'w').close()
 # open('elements.txt', 'w').close()
 
-img1 = cv2.imread('samples/merchant1.jpg',cv2.IMREAD_GRAYSCALE)    
+# img1 = cv2.imread('samples/merchant1.jpg',cv2.IMREAD_GRAYSCALE)    
 # img2 = cv2.imread('samples/merchant2.jpg',cv2.IMREAD_GRAYSCALE)    
 # img3 = cv2.imread('samples/merchant3.jpg',cv2.IMREAD_GRAYSCALE)    
-# img4 = cv2.imread('samples/merchant4.jpg',cv2.IMREAD_GRAYSCALE)    
+img4 = cv2.imread('samples/merchant4.jpg',cv2.IMREAD_GRAYSCALE)    
 # img5 = cv2.imread('samples/merchant5.jpg',cv2.IMREAD_GRAYSCALE)    
 # img6 = cv2.imread('samples/merchant6.jpg',cv2.IMREAD_GRAYSCALE)    
 # img7 = cv2.imread('samples/merchant7.jpg',cv2.IMREAD_GRAYSCALE)    
@@ -45,7 +45,7 @@ img1 = cv2.imread('samples/merchant1.jpg',cv2.IMREAD_GRAYSCALE)
 # elements8 = im.image_processing(img8, verbose)
 # elements9 = im.image_processing(img9, verbose)
 
-# elem = json.dumps(elements1)
+# elem = json.dumps(elements4)
 
 # file = open("element", 'w')
 # file.write(elem)
@@ -56,8 +56,6 @@ elements = file.read()
 elements = json.loads(elements)
 elements = byteify(elements)
 
-print elements
-
-# model = m.modeling(elements, img1, verbose)
+model = m.modeling(elements, img4, True)
 
 

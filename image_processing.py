@@ -3,6 +3,8 @@ import cv2
 import time
 import operator
 
+import matplotlib.pyplot as plt
+
 from pytesser import image_to_string
 from PIL import Image, ImageOps
 from skimage.segmentation import felzenszwalb
@@ -120,7 +122,7 @@ def find_buttons_seg(image, verbose=False):
 
     if(verbose):
         segmented_img = img_as_ubyte(mark_boundaries(img, segments))
-        # cv2.imshow("image", segmented_img)
+        plt.imshow(segmented_img), plt.show()
 
     seg_time_start = []
     seg_time_finish = []
@@ -141,7 +143,7 @@ def find_buttons_seg(image, verbose=False):
 
             if verbose:
                 print text
-                # cv2.imshow(("image", segment_image)
+                plt.imshow(segment_image), plt.show()
 
             cnt = "continue"
             shp = "shopping"
@@ -155,7 +157,7 @@ def find_buttons_seg(image, verbose=False):
             text = text.lower()
 
             if(len(text.split())<4):
-                if visa in text.split() and chk in text.split():
+                if (visa in text.split() and chk in text.split()) or (visa in text.split() and len(text.split())<3):
                     elements.append(add_element(boundries, "Visa Checkout", text, id))
                     id+=1
                     print "matched visa checkout button"
