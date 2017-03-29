@@ -956,3 +956,1102 @@ Text: continue shopping:
 -------
 
 -----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 10: 
+ID: 0: 
+Type: Checkout: 
+Boundries: (1759, 285, 374, 1409): 
+Center: (1584, 329): 
+Dimentions: (350, 89): 
+Text: / x;;
+    checkout: 
+-------
+ID: 1: 
+Type: Checkout: 
+Boundries: (1752, 290, 369, 1414): 
+Center: (1583, 329): 
+Dimentions: (338, 79): 
+Text: / xi?
+    checkout: 
+-------
+ID: 2: 
+Type: Checkout: 
+Boundries: (1364, 293, 364, 1044): 
+Center: (1204, 328): 
+Dimentions: (320, 71): 
+Text: a secure checkout: 
+-------
+ID: 3: 
+Type: Checkout: 
+Boundries: (1360, 297, 360, 1048): 
+Center: (1204, 328): 
+Dimentions: (312, 63): 
+Text: 0 secure checkout: 
+-------
+ID: 4: 
+Type: Checkout: 
+Boundries: (1356, 301, 356, 1052): 
+Center: (1204, 328): 
+Dimentions: (304, 55): 
+Text: 0 secure checkout: 
+-------
+ID: 5: 
+Type: Checkout: 
+Boundries: (1353, 304, 353, 1055): 
+Center: (1204, 328): 
+Dimentions: (298, 49): 
+Text: 0 secure checkout: 
+-------
+ID: 6: 
+Type: Checkout: 
+Boundries: (1265, 981, 1070, 732): 
+Center: (998, 1025): 
+Dimentions: (533, 89): 
+Text: 8 secure checkout: 
+-------
+ID: 7: 
+Type: Checkout: 
+Boundries: (1260, 986, 1065, 737): 
+Center: (998, 1025): 
+Dimentions: (523, 79): 
+Text: 8 secure checkout: 
+-------
+ID: 8: 
+Type: Checkout: 
+Boundries: (1256, 990, 1061, 741): 
+Center: (998, 1025): 
+Dimentions: (515, 71): 
+Text: 8 secure checkout: 
+-------
+ID: 9: 
+Type: Checkout: 
+Boundries: (1250, 996, 1055, 747): 
+Center: (998, 1025): 
+Dimentions: (503, 59): 
+Text: 8 secure checkout: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 5: 
+ID: 0: 
+Type: Checkout: 
+Boundries: (1657, 931, 1056, 1164): 
+Center: (1410, 993): 
+Dimentions: (493, 125): 
+Text: secure checknut: 
+-------
+ID: 1: 
+Type: Continue Shopping: 
+Boundries: (1142, 933, 1054, 652): 
+Center: (897, 993): 
+Dimentions: (490, 121): 
+Text: continue shopping: 
+-------
+ID: 2: 
+Type: Checkout: 
+Boundries: (1653, 935, 1052, 1167): 
+Center: (1410, 993): 
+Dimentions: (486, 117): 
+Text: secure checknut: 
+-------
+ID: 3: 
+Type: Checkout: 
+Boundries: (2129, 967, 1004, 1920): 
+Center: (2024, 985): 
+Dimentions: (209, 37): 
+Text: checkout: 
+-------
+ID: 4: 
+Type: Continue Shopping: 
+Boundries: (1043, 970, 1017, 750): 
+Center: (896, 993): 
+Dimentions: (293, 47): 
+Text: continue shopping: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 10: 
+ID: 0: 
+Type: Checkout: 
+Boundries: (1759, 285, 374, 1409): 
+Center: (1584, 329): 
+Dimentions: (350, 89): 
+Text: / x;;
+    checkout: 
+-------
+ID: 1: 
+Type: Checkout: 
+Boundries: (1752, 290, 369, 1414): 
+Center: (1583, 329): 
+Dimentions: (338, 79): 
+Text: / xi?
+    checkout: 
+-------
+ID: 2: 
+Type: Checkout: 
+Boundries: (1364, 293, 364, 1044): 
+Center: (1204, 328): 
+Dimentions: (320, 71): 
+Text: a secure checkout: 
+-------
+ID: 3: 
+Type: Checkout: 
+Boundries: (1360, 297, 360, 1048): 
+Center: (1204, 328): 
+Dimentions: (312, 63): 
+Text: 0 secure checkout: 
+-------
+ID: 4: 
+Type: Checkout: 
+Boundries: (1356, 301, 356, 1052): 
+Center: (1204, 328): 
+Dimentions: (304, 55): 
+Text: 0 secure checkout: 
+-------
+ID: 5: 
+Type: Checkout: 
+Boundries: (1353, 304, 353, 1055): 
+Center: (1204, 328): 
+Dimentions: (298, 49): 
+Text: 0 secure checkout: 
+-------
+ID: 6: 
+Type: Checkout: 
+Boundries: (1265, 981, 1070, 732): 
+Center: (998, 1025): 
+Dimentions: (533, 89): 
+Text: 8 secure checkout: 
+-------
+ID: 7: 
+Type: Checkout: 
+Boundries: (1260, 986, 1065, 737): 
+Center: (998, 1025): 
+Dimentions: (523, 79): 
+Text: 8 secure checkout: 
+-------
+ID: 8: 
+Type: Checkout: 
+Boundries: (1256, 990, 1061, 741): 
+Center: (998, 1025): 
+Dimentions: (515, 71): 
+Text: 8 secure checkout: 
+-------
+ID: 9: 
+Type: Checkout: 
+Boundries: (1250, 996, 1055, 747): 
+Center: (998, 1025): 
+Dimentions: (503, 59): 
+Text: 8 secure checkout: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 5: 
+ID: 0: 
+Type: Checkout: 
+Boundries: (1657, 931, 1056, 1164): 
+Center: (1410, 993): 
+Dimentions: (493, 125): 
+Text: secure checknut: 
+-------
+ID: 1: 
+Type: Continue Shopping: 
+Boundries: (1142, 933, 1054, 652): 
+Center: (897, 993): 
+Dimentions: (490, 121): 
+Text: continue shopping: 
+-------
+ID: 2: 
+Type: Checkout: 
+Boundries: (1653, 935, 1052, 1167): 
+Center: (1410, 993): 
+Dimentions: (486, 117): 
+Text: secure checknut: 
+-------
+ID: 3: 
+Type: Checkout: 
+Boundries: (2129, 967, 1004, 1920): 
+Center: (2024, 985): 
+Dimentions: (209, 37): 
+Text: checkout: 
+-------
+ID: 4: 
+Type: Continue Shopping: 
+Boundries: (1043, 970, 1017, 750): 
+Center: (896, 993): 
+Dimentions: (293, 47): 
+Text: continue shopping: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 10: 
+ID: 0: 
+Type: Checkout: 
+Boundries: (1759, 285, 374, 1409): 
+Center: (1584, 329): 
+Dimentions: (350, 89): 
+Text: / x;;
+    checkout: 
+-------
+ID: 1: 
+Type: Checkout: 
+Boundries: (1752, 290, 369, 1414): 
+Center: (1583, 329): 
+Dimentions: (338, 79): 
+Text: / xi?
+    checkout: 
+-------
+ID: 2: 
+Type: Checkout: 
+Boundries: (1364, 293, 364, 1044): 
+Center: (1204, 328): 
+Dimentions: (320, 71): 
+Text: a secure checkout: 
+-------
+ID: 3: 
+Type: Checkout: 
+Boundries: (1360, 297, 360, 1048): 
+Center: (1204, 328): 
+Dimentions: (312, 63): 
+Text: 0 secure checkout: 
+-------
+ID: 4: 
+Type: Checkout: 
+Boundries: (1356, 301, 356, 1052): 
+Center: (1204, 328): 
+Dimentions: (304, 55): 
+Text: 0 secure checkout: 
+-------
+ID: 5: 
+Type: Checkout: 
+Boundries: (1353, 304, 353, 1055): 
+Center: (1204, 328): 
+Dimentions: (298, 49): 
+Text: 0 secure checkout: 
+-------
+ID: 6: 
+Type: Checkout: 
+Boundries: (1265, 981, 1070, 732): 
+Center: (998, 1025): 
+Dimentions: (533, 89): 
+Text: 8 secure checkout: 
+-------
+ID: 7: 
+Type: Checkout: 
+Boundries: (1260, 986, 1065, 737): 
+Center: (998, 1025): 
+Dimentions: (523, 79): 
+Text: 8 secure checkout: 
+-------
+ID: 8: 
+Type: Checkout: 
+Boundries: (1256, 990, 1061, 741): 
+Center: (998, 1025): 
+Dimentions: (515, 71): 
+Text: 8 secure checkout: 
+-------
+ID: 9: 
+Type: Checkout: 
+Boundries: (1250, 996, 1055, 747): 
+Center: (998, 1025): 
+Dimentions: (503, 59): 
+Text: 8 secure checkout: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 5: 
+ID: 0: 
+Type: Checkout: 
+Boundries: (1657, 931, 1056, 1164): 
+Center: (1410, 993): 
+Dimentions: (493, 125): 
+Text: secure checknut: 
+-------
+ID: 1: 
+Type: Continue Shopping: 
+Boundries: (1142, 933, 1054, 652): 
+Center: (897, 993): 
+Dimentions: (490, 121): 
+Text: continue shopping: 
+-------
+ID: 2: 
+Type: Checkout: 
+Boundries: (1653, 935, 1052, 1167): 
+Center: (1410, 993): 
+Dimentions: (486, 117): 
+Text: secure checknut: 
+-------
+ID: 3: 
+Type: Checkout: 
+Boundries: (2129, 967, 1004, 1920): 
+Center: (2024, 985): 
+Dimentions: (209, 37): 
+Text: checkout: 
+-------
+ID: 4: 
+Type: Continue Shopping: 
+Boundries: (1043, 970, 1017, 750): 
+Center: (896, 993): 
+Dimentions: (293, 47): 
+Text: continue shopping: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 10: 
+ID: 0: 
+Type: Checkout: 
+Boundries: (1759, 285, 374, 1409): 
+Center: (1584, 329): 
+Dimentions: (350, 89): 
+Text: / x;;
+    checkout: 
+-------
+ID: 1: 
+Type: Checkout: 
+Boundries: (1752, 290, 369, 1414): 
+Center: (1583, 329): 
+Dimentions: (338, 79): 
+Text: / xi?
+    checkout: 
+-------
+ID: 2: 
+Type: Checkout: 
+Boundries: (1364, 293, 364, 1044): 
+Center: (1204, 328): 
+Dimentions: (320, 71): 
+Text: a secure checkout: 
+-------
+ID: 3: 
+Type: Checkout: 
+Boundries: (1360, 297, 360, 1048): 
+Center: (1204, 328): 
+Dimentions: (312, 63): 
+Text: 0 secure checkout: 
+-------
+ID: 4: 
+Type: Checkout: 
+Boundries: (1356, 301, 356, 1052): 
+Center: (1204, 328): 
+Dimentions: (304, 55): 
+Text: 0 secure checkout: 
+-------
+ID: 5: 
+Type: Checkout: 
+Boundries: (1353, 304, 353, 1055): 
+Center: (1204, 328): 
+Dimentions: (298, 49): 
+Text: 0 secure checkout: 
+-------
+ID: 6: 
+Type: Checkout: 
+Boundries: (1265, 981, 1070, 732): 
+Center: (998, 1025): 
+Dimentions: (533, 89): 
+Text: 8 secure checkout: 
+-------
+ID: 7: 
+Type: Checkout: 
+Boundries: (1260, 986, 1065, 737): 
+Center: (998, 1025): 
+Dimentions: (523, 79): 
+Text: 8 secure checkout: 
+-------
+ID: 8: 
+Type: Checkout: 
+Boundries: (1256, 990, 1061, 741): 
+Center: (998, 1025): 
+Dimentions: (515, 71): 
+Text: 8 secure checkout: 
+-------
+ID: 9: 
+Type: Checkout: 
+Boundries: (1250, 996, 1055, 747): 
+Center: (998, 1025): 
+Dimentions: (503, 59): 
+Text: 8 secure checkout: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 15: 
+ID: 0: 
+Type: Checkout: 
+Boundries: (1345, 116, 199, 995): 
+Center: (1170, 157): 
+Dimentions: (350, 83): 
+Text: checkout: 
+-------
+ID: 1: 
+Type: Checkout: 
+Boundries: (1340, 121, 194, 1000): 
+Center: (1170, 157): 
+Dimentions: (340, 73): 
+Text: checkout: 
+-------
+ID: 2: 
+Type: Visa Checkout: 
+Boundries: (936, 123, 193, 711): 
+Center: (823, 158): 
+Dimentions: (225, 70): 
+Text: visa caecrww: 
+-------
+ID: 3: 
+Type: Checkout: 
+Boundries: (1337, 124, 191, 1003): 
+Center: (1170, 157): 
+Dimentions: (334, 67): 
+Text: checkout: 
+-------
+ID: 4: 
+Type: Checkout: 
+Boundries: (1332, 129, 185, 1008): 
+Center: (1170, 157): 
+Dimentions: (324, 56): 
+Text: checkout: 
+-------
+ID: 5: 
+Type: Visa Checkout: 
+Boundries: (928, 131, 186, 718): 
+Center: (823, 158): 
+Dimentions: (210, 55): 
+Text: visa caecrwue: 
+-------
+ID: 6: 
+Type: Checkout: 
+Boundries: (1328, 133, 181, 1013): 
+Center: (1170, 157): 
+Dimentions: (315, 48): 
+Text: checkout: 
+-------
+ID: 7: 
+Type: Visa Checkout: 
+Boundries: (927, 134, 183, 721): 
+Center: (824, 158): 
+Dimentions: (206, 49): 
+Text: visa caecrwue: 
+-------
+ID: 8: 
+Type: Checkout: 
+Boundries: (1247, 142, 170, 1094): 
+Center: (1170, 156): 
+Dimentions: (153, 28): 
+Text: checkout: 
+-------
+ID: 9: 
+Type: Visa Checkout: 
+Boundries: (937, 1093, 1166, 710): 
+Center: (823, 1129): 
+Dimentions: (227, 73): 
+Text: visa crww: 
+-------
+ID: 10: 
+Type: Visa Checkout: 
+Boundries: (928, 1102, 1157, 718): 
+Center: (823, 1129): 
+Dimentions: (210, 55): 
+Text: visa cn===m=: 
+-------
+ID: 11: 
+Type: Checkout: 
+Boundries: (1330, 1104, 1156, 1010): 
+Center: (1170, 1130): 
+Dimentions: (320, 52): 
+Text: checkout: 
+-------
+ID: 12: 
+Type: Visa Checkout: 
+Boundries: (927, 1105, 1154, 721): 
+Center: (824, 1129): 
+Dimentions: (206, 49): 
+Text: visa cn===m=: 
+-------
+ID: 13: 
+Type: Checkout: 
+Boundries: (1328, 1106, 1154, 1012): 
+Center: (1170, 1130): 
+Dimentions: (316, 48): 
+Text: checkout: 
+-------
+ID: 14: 
+Type: Continue Shopping: 
+Boundries: (279, 1111, 1156, 32): 
+Center: (155, 1133): 
+Dimentions: (247, 45): 
+Text: continue shopping: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 6: 
+ID: 0: 
+Type: Visa Checkout: 
+Boundries: (956, 149, 228, 851): 
+Center: (903, 188): 
+Dimentions: (105, 79): 
+Text: visa: 
+-------
+ID: 1: 
+Type: Visa Checkout: 
+Boundries: (1087, 149, 228, 982): 
+Center: (1034, 188): 
+Dimentions: (105, 79): 
+Text: visa: 
+-------
+ID: 2: 
+Type: Visa Checkout: 
+Boundries: (1214, 149, 224, 1118): 
+Center: (1166, 186): 
+Dimentions: (96, 75): 
+Text: visa
+checkout: 
+-------
+ID: 3: 
+Type: Visa Checkout: 
+Boundries: (1207, 156, 217, 1125): 
+Center: (1166, 186): 
+Dimentions: (82, 61): 
+Text: visa
+cherkuu{: 
+-------
+ID: 4: 
+Type: Visa Checkout: 
+Boundries: (1204, 160, 214, 1128): 
+Center: (1166, 187): 
+Dimentions: (76, 54): 
+Text: visa
+cherkuu{: 
+-------
+ID: 5: 
+Type: Visa Checkout: 
+Boundries: (871, 852, 907, 643): 
+Center: (757, 879): 
+Dimentions: (228, 55): 
+Text: o visa checkout: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 9: 
+ID: 0: 
+Type: Checkout: 
+Boundries: (2536, 207, 234, 2394): 
+Center: (2465, 220): 
+Dimentions: (142, 27): 
+Text: checkout: 
+-------
+ID: 1: 
+Type: Checkout: 
+Boundries: (575, 576, 603, 432): 
+Center: (503, 589): 
+Dimentions: (143, 27): 
+Text: checkout: 
+-------
+ID: 2: 
+Type: Visa Checkout: 
+Boundries: (881, 1238, 1474, 495): 
+Center: (688, 1356): 
+Dimentions: (386, 236): 
+Text: visa
+checkout: 
+-------
+ID: 3: 
+Type: Visa Checkout: 
+Boundries: (879, 1240, 1472, 497): 
+Center: (688, 1356): 
+Dimentions: (382, 232): 
+Text: visa
+checkout: 
+-------
+ID: 4: 
+Type: Visa Checkout: 
+Boundries: (877, 1242, 1470, 499): 
+Center: (688, 1356): 
+Dimentions: (378, 228): 
+Text: visa
+checkout: 
+-------
+ID: 5: 
+Type: Visa Checkout: 
+Boundries: (871, 1249, 1464, 505): 
+Center: (688, 1356): 
+Dimentions: (366, 215): 
+Text: visa
+checkout: 
+-------
+ID: 6: 
+Type: Visa Checkout: 
+Boundries: (867, 1253, 1460, 509): 
+Center: (688, 1356): 
+Dimentions: (358, 207): 
+Text: visa
+checkout: 
+-------
+ID: 7: 
+Type: Visa Checkout: 
+Boundries: (794, 1279, 1360, 576): 
+Center: (685, 1319): 
+Dimentions: (218, 81): 
+Text: visa: 
+-------
+ID: 8: 
+Type: Checkout: 
+Boundries: (806, 1381, 1424, 582): 
+Center: (694, 1402): 
+Dimentions: (224, 43): 
+Text: checkout: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 19: 
+ID: 0: 
+Type: Visa Checkout: 
+Boundries: (349, 605, 658, 275): 
+Center: (312, 631): 
+Dimentions: (74, 53): 
+Text: visa: 
+-------
+ID: 1: 
+Type: Visa Checkout: 
+Boundries: (339, 616, 648, 285): 
+Center: (312, 632): 
+Dimentions: (54, 32): 
+Text: visa: 
+-------
+ID: 2: 
+Type: Visa Checkout: 
+Boundries: (346, 677, 728, 192): 
+Center: (269, 702): 
+Dimentions: (154, 51): 
+Text: visa a;==n===u: 
+-------
+ID: 3: 
+Type: Visa Checkout: 
+Boundries: (334, 688, 716, 204): 
+Center: (269, 702): 
+Dimentions: (130, 28): 
+Text: visa awaukwr: 
+-------
+ID: 4: 
+Type: Visa Checkout: 
+Boundries: (517, 800, 829, 457): 
+Center: (487, 814): 
+Dimentions: (60, 29): 
+Text: visa: 
+-------
+ID: 5: 
+Type: Checkout: 
+Boundries: (1080, 1469, 1566, 212): 
+Center: (646, 1517): 
+Dimentions: (868, 97): 
+Text: book now: 
+-------
+ID: 6: 
+Type: Checkout: 
+Boundries: (1076, 1473, 1562, 216): 
+Center: (646, 1517): 
+Dimentions: (860, 89): 
+Text: book now: 
+-------
+ID: 7: 
+Type: Checkout: 
+Boundries: (1074, 1475, 1560, 218): 
+Center: (646, 1517): 
+Dimentions: (856, 85): 
+Text: book now: 
+-------
+ID: 8: 
+Type: Checkout: 
+Boundries: (1072, 1477, 1558, 220): 
+Center: (646, 1517): 
+Dimentions: (852, 81): 
+Text: book now: 
+-------
+ID: 9: 
+Type: Checkout: 
+Boundries: (1071, 1478, 1557, 221): 
+Center: (646, 1517): 
+Dimentions: (850, 79): 
+Text: book now: 
+-------
+ID: 10: 
+Type: Checkout: 
+Boundries: (1070, 1479, 1556, 222): 
+Center: (646, 1517): 
+Dimentions: (848, 77): 
+Text: book now: 
+-------
+ID: 11: 
+Type: Checkout: 
+Boundries: (1069, 1480, 1555, 223): 
+Center: (646, 1517): 
+Dimentions: (846, 75): 
+Text: book now: 
+-------
+ID: 12: 
+Type: Checkout: 
+Boundries: (1068, 1481, 1554, 224): 
+Center: (646, 1517): 
+Dimentions: (844, 73): 
+Text: book now: 
+-------
+ID: 13: 
+Type: Checkout: 
+Boundries: (1059, 1490, 1545, 233): 
+Center: (646, 1517): 
+Dimentions: (826, 55): 
+Text: book now: 
+-------
+ID: 14: 
+Type: Checkout: 
+Boundries: (1058, 1491, 1544, 234): 
+Center: (646, 1517): 
+Dimentions: (824, 53): 
+Text: book now: 
+-------
+ID: 15: 
+Type: Checkout: 
+Boundries: (1057, 1492, 1543, 235): 
+Center: (646, 1517): 
+Dimentions: (822, 51): 
+Text: book now: 
+-------
+ID: 16: 
+Type: Checkout: 
+Boundries: (1056, 1493, 1542, 236): 
+Center: (646, 1517): 
+Dimentions: (820, 49): 
+Text: book now: 
+-------
+ID: 17: 
+Type: Checkout: 
+Boundries: (1055, 1494, 1541, 237): 
+Center: (646, 1517): 
+Dimentions: (818, 47): 
+Text: book now: 
+-------
+ID: 18: 
+Type: Checkout: 
+Boundries: (723, 1499, 1536, 570): 
+Center: (646, 1517): 
+Dimentions: (153, 37): 
+Text: book now: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 1: 
+ID: 0: 
+Type: Checkout: 
+Boundries: (986, 1370, 1414, 572): 
+Center: (779, 1392): 
+Dimentions: (414, 44): 
+Text: checkout: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 13: 
+ID: 0: 
+Type: Checkout: 
+Boundries: (1261, 107, 172, 927): 
+Center: (1094, 139): 
+Dimentions: (334, 65): 
+Text: q checkout: 
+-------
+ID: 1: 
+Type: Checkout: 
+Boundries: (632, 410, 510, 239): 
+Center: (435, 460): 
+Dimentions: (393, 100): 
+Text: a   checkout: 
+-------
+ID: 2: 
+Type: Checkout: 
+Boundries: (627, 416, 501, 368): 
+Center: (497, 458): 
+Dimentions: (259, 85): 
+Text: checkout: 
+-------
+ID: 3: 
+Type: Checkout: 
+Boundries: (617, 427, 491, 378): 
+Center: (497, 459): 
+Dimentions: (239, 64): 
+Text: checkout: 
+-------
+ID: 4: 
+Type: Checkout: 
+Boundries: (612, 431, 486, 382): 
+Center: (497, 458): 
+Dimentions: (230, 55): 
+Text: checkout: 
+-------
+ID: 5: 
+Type: Visa Checkout: 
+Boundries: (1051, 1163, 1204, 954): 
+Center: (1002, 1183): 
+Dimentions: (97, 41): 
+Text: visa: 
+-------
+ID: 6: 
+Type: Checkout: 
+Boundries: (1159, 1402, 1504, 858): 
+Center: (1008, 1453): 
+Dimentions: (301, 102): 
+Text: purchase now: 
+-------
+ID: 7: 
+Type: Checkout: 
+Boundries: (1153, 1408, 1498, 864): 
+Center: (1008, 1453): 
+Dimentions: (289, 90): 
+Text: purchase now: 
+-------
+ID: 8: 
+Type: Checkout: 
+Boundries: (1149, 1412, 1494, 868): 
+Center: (1008, 1453): 
+Dimentions: (281, 82): 
+Text: purchase now: 
+-------
+ID: 9: 
+Type: Checkout: 
+Boundries: (1146, 1415, 1491, 871): 
+Center: (1008, 1453): 
+Dimentions: (275, 76): 
+Text: purchase now: 
+-------
+ID: 10: 
+Type: Checkout: 
+Boundries: (1143, 1418, 1488, 874): 
+Center: (1008, 1453): 
+Dimentions: (269, 70): 
+Text: purchase now: 
+-------
+ID: 11: 
+Type: Checkout: 
+Boundries: (1139, 1422, 1484, 878): 
+Center: (1008, 1453): 
+Dimentions: (261, 62): 
+Text: purchase now: 
+-------
+ID: 12: 
+Type: Checkout: 
+Boundries: (1137, 1424, 1482, 880): 
+Center: (1008, 1453): 
+Dimentions: (257, 58): 
+Text: purchase now: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 13: 
+ID: 0: 
+Type: Checkout: 
+Boundries: (1261, 107, 172, 927): 
+Center: (1094, 139): 
+Dimentions: (334, 65): 
+Text: q checkout: 
+-------
+ID: 1: 
+Type: Checkout: 
+Boundries: (632, 410, 510, 239): 
+Center: (435, 460): 
+Dimentions: (393, 100): 
+Text: a   checkout: 
+-------
+ID: 2: 
+Type: Checkout: 
+Boundries: (627, 416, 501, 368): 
+Center: (497, 458): 
+Dimentions: (259, 85): 
+Text: checkout: 
+-------
+ID: 3: 
+Type: Checkout: 
+Boundries: (617, 427, 491, 378): 
+Center: (497, 459): 
+Dimentions: (239, 64): 
+Text: checkout: 
+-------
+ID: 4: 
+Type: Checkout: 
+Boundries: (612, 431, 486, 382): 
+Center: (497, 458): 
+Dimentions: (230, 55): 
+Text: checkout: 
+-------
+ID: 5: 
+Type: Visa Checkout: 
+Boundries: (1051, 1163, 1204, 954): 
+Center: (1002, 1183): 
+Dimentions: (97, 41): 
+Text: visa: 
+-------
+ID: 6: 
+Type: Checkout: 
+Boundries: (1159, 1402, 1504, 858): 
+Center: (1008, 1453): 
+Dimentions: (301, 102): 
+Text: purchase now: 
+-------
+ID: 7: 
+Type: Checkout: 
+Boundries: (1153, 1408, 1498, 864): 
+Center: (1008, 1453): 
+Dimentions: (289, 90): 
+Text: purchase now: 
+-------
+ID: 8: 
+Type: Checkout: 
+Boundries: (1149, 1412, 1494, 868): 
+Center: (1008, 1453): 
+Dimentions: (281, 82): 
+Text: purchase now: 
+-------
+ID: 9: 
+Type: Checkout: 
+Boundries: (1146, 1415, 1491, 871): 
+Center: (1008, 1453): 
+Dimentions: (275, 76): 
+Text: purchase now: 
+-------
+ID: 10: 
+Type: Checkout: 
+Boundries: (1143, 1418, 1488, 874): 
+Center: (1008, 1453): 
+Dimentions: (269, 70): 
+Text: purchase now: 
+-------
+ID: 11: 
+Type: Checkout: 
+Boundries: (1139, 1422, 1484, 878): 
+Center: (1008, 1453): 
+Dimentions: (261, 62): 
+Text: purchase now: 
+-------
+ID: 12: 
+Type: Checkout: 
+Boundries: (1137, 1424, 1482, 880): 
+Center: (1008, 1453): 
+Dimentions: (257, 58): 
+Text: purchase now: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 13: 
+ID: 0: 
+Type: Checkout: 
+Boundries: (1261, 107, 172, 927): 
+Center: (1094, 139): 
+Dimentions: (334, 65): 
+Text: q checkout: 
+-------
+ID: 1: 
+Type: Checkout: 
+Boundries: (632, 410, 510, 239): 
+Center: (435, 460): 
+Dimentions: (393, 100): 
+Text: a   checkout: 
+-------
+ID: 2: 
+Type: Checkout: 
+Boundries: (627, 416, 501, 368): 
+Center: (497, 458): 
+Dimentions: (259, 85): 
+Text: checkout: 
+-------
+ID: 3: 
+Type: Checkout: 
+Boundries: (617, 427, 491, 378): 
+Center: (497, 459): 
+Dimentions: (239, 64): 
+Text: checkout: 
+-------
+ID: 4: 
+Type: Checkout: 
+Boundries: (612, 431, 486, 382): 
+Center: (497, 458): 
+Dimentions: (230, 55): 
+Text: checkout: 
+-------
+ID: 5: 
+Type: Visa Checkout: 
+Boundries: (1051, 1163, 1204, 954): 
+Center: (1002, 1183): 
+Dimentions: (97, 41): 
+Text: visa: 
+-------
+ID: 6: 
+Type: Checkout: 
+Boundries: (1159, 1402, 1504, 858): 
+Center: (1008, 1453): 
+Dimentions: (301, 102): 
+Text: purchase now: 
+-------
+ID: 7: 
+Type: Checkout: 
+Boundries: (1153, 1408, 1498, 864): 
+Center: (1008, 1453): 
+Dimentions: (289, 90): 
+Text: purchase now: 
+-------
+ID: 8: 
+Type: Checkout: 
+Boundries: (1149, 1412, 1494, 868): 
+Center: (1008, 1453): 
+Dimentions: (281, 82): 
+Text: purchase now: 
+-------
+ID: 9: 
+Type: Checkout: 
+Boundries: (1146, 1415, 1491, 871): 
+Center: (1008, 1453): 
+Dimentions: (275, 76): 
+Text: purchase now: 
+-------
+ID: 10: 
+Type: Checkout: 
+Boundries: (1143, 1418, 1488, 874): 
+Center: (1008, 1453): 
+Dimentions: (269, 70): 
+Text: purchase now: 
+-------
+ID: 11: 
+Type: Checkout: 
+Boundries: (1139, 1422, 1484, 878): 
+Center: (1008, 1453): 
+Dimentions: (261, 62): 
+Text: purchase now: 
+-------
+ID: 12: 
+Type: Checkout: 
+Boundries: (1137, 1424, 1482, 880): 
+Center: (1008, 1453): 
+Dimentions: (257, 58): 
+Text: purchase now: 
+-------
+
+-----------------END OF TEST-------------------------------

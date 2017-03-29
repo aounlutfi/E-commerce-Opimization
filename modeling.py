@@ -1,7 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-
-from PIL import Image
+import math
 
 TOP = 0
 LEFT = 1
@@ -15,7 +14,6 @@ W = 1
 def modeling(elements, image, verbose = False):
 	
 	elements = clean_duplicates(elements, verbose)
-
 	G = nx.Graph()
 
 	i = 0
@@ -30,14 +28,36 @@ def modeling(elements, image, verbose = False):
 		
 		i += 1
 	
-		
+	dist = []
+	i = 0
+	for element in elements:
+		temp = list(elements)
+		temp.remove(element)		
+		for elem in temp:
+			G.add_edge(elem["id"], element['id'])
+			d = distance(elem, element)
+			dist.append((i, "distance: " + str(d)))
+ 			G.edge[elem['id']][element['id']] = d
+			i+=1
+
+	print "nodes: " + str(G.number_of_nodes())
 
 	if verbose:
 		print "nodes: " + str(G.number_of_nodes())
 		for i in range(0, G.number_of_nodes()):
 			print G.node[i]
 		print "links: " + str(G.number_of_edges())
-	
+		print G.edges()
+		for element in elements:
+			temp = list(elements)
+			temp.remove(element)		
+			for elem in temp:
+				e = G.edge[elem['id']][element['id']]
+				if e:
+					print e
+
+	nx.draw_networkx_edges(G, positions)
+	nx.draw_networkx_edge_labels(G, positions)
 	nx.draw_networkx_nodes(G, positions, node_size=1000)
 	nx.draw_networkx_labels(G,positions,labels, font_color='w')
 	plt.imshow(image, "gray")
@@ -65,3 +85,6 @@ def clean_duplicates(elements, verbose):
 		element["id"] = id
 		id += 1
 	return elements
+
+def distance(elem1, elem2):
+	return int(round(math.sqrt((elem1["center"][X] - elem2["center"][X])**2 + (elem1["center"][Y] - elem2["center"][Y])**2)))

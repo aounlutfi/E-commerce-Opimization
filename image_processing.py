@@ -120,7 +120,7 @@ def find_buttons_seg(image, verbose=False):
     num_segments =  len(np.unique(segments))
     print "number of Segments: " + str(num_segments)
 
-    if(verbose):
+    if verbose:
         segmented_img = img_as_ubyte(mark_boundaries(img, segments))
         plt.imshow(segmented_img), plt.show()
 
@@ -140,6 +140,9 @@ def find_buttons_seg(image, verbose=False):
         try:
 
             text = image_to_string(img)
+            text = "".join([s for s in text.strip().splitlines(True) if s.strip("\r\n").strip()])
+            text = text.encode('ascii', 'ignore').decode('ascii')
+            text = text.lower()
 
             if verbose:
                 print text
@@ -154,7 +157,6 @@ def find_buttons_seg(image, verbose=False):
             scu = "secure"
             pay = "pay"
 
-            text = text.lower()
 
             if(len(text.split())<4):
                 if (visa in text.split() and chk in text.split()) or (visa in text.split() and len(text.split())<3):
@@ -193,9 +195,6 @@ def find_buttons_seg(image, verbose=False):
 
 def add_element(boundries, name, text, id):
     
-    text = "".join([s for s in text.strip().splitlines(True) if s.strip("\r\n").strip()])
-    text = text.encode('ascii', 'ignore').decode('ascii')
-
     center = calculate_center(boundries[TOP], boundries[BUTTOM], boundries[LEFT], boundries[RIGHT])
     dimentions = calculate_dimentions(boundries[TOP], boundries[BUTTOM], boundries[LEFT], boundries[RIGHT])
 
