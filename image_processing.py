@@ -67,41 +67,6 @@ def image_processing(image, verbose=False):
     return elements
 
 
-def find_segment_corners(array, segment):
-
-    #find segment boundries
-    width = len(array[0])
-    found = []
-    posn = 0
-    for row in array:
-        for col in row:
-            if col == segment:
-                found.append((posn // width, posn % width))
-            posn += 1
-
-    #buttom
-    miny = min([q[1] for q in found])
-    #top
-    maxy = max([q[1] for q in found])
-    #right
-    maxx = max([q[0] for q in found])
-    #left
-    minx = min([q[0] for q in found])
-
-    boundry_list = (maxy, minx, maxx, miny)
-    return boundry_list
-
-def calculate_center(top, buttom, left, right):
-    x = (top + buttom)/2
-    y = (left + right)/2
-    center = (x,y)
-    return center
-
-def calculate_dimentions(top, buttom, left, right):
-    h = (top - buttom)
-    w = (right - left)
-    dimentions = (h,w)
-    return dimentions
 
 
 def find_buttons_seg(image, verbose=False):
@@ -160,27 +125,27 @@ def find_buttons_seg(image, verbose=False):
 
             if(len(text.split())<4):
                 if (visa in text.split() and chk in text.split()) or (visa in text.split() and len(text.split())<3):
-                    elements.append(add_element(boundries, "Visa Checkout", text, id))
+                    elements.append(add_element(boundries, "visa checkout", text, id))
                     id+=1
                     print "matched visa checkout button"
                 elif (chk in text.split()):
-                    elements.append(add_element(boundries, "Checkout", text, id))
+                    elements.append(add_element(boundries, "checkout", text, id))
                     id+=1
                     print "matched checkout button"
                 elif book in text.split():
-                    elements.append(add_element(boundries, "Checkout", text, id))
+                    elements.append(add_element(boundries, "checkout", text, id))
                     id+=1
                     print "matched book button"
                 elif pch in text.split():
-                    elements.append(add_element(boundries, "Checkout", text, id))
+                    elements.append(add_element(boundries, "checkout", text, id))
                     id+=1
                     print "matched purchase button"
                 elif scu in text.split():
-                    elements.append(add_element(boundries, "Checkout", text, id))
+                    elements.append(add_element(boundries, "checkout", text, id))
                     id+=1
                     print "matched secure button"
                 elif shp in text and cnt in text:
-                    elements.append(add_element(boundries, "Continue Shopping", text, id))
+                    elements.append(add_element(boundries, "continue shopping", text, id))
                     id+=1
                 else:
                     print "No button found in segment " + str(n)
@@ -201,3 +166,39 @@ def add_element(boundries, name, text, id):
     element = {"id": id, "type": name, "boundries": boundries, "center": center, "dimentions": dimentions, "text":text}
 
     return element
+
+def find_segment_corners(array, segment):
+
+    #find segment boundries
+    width = len(array[0])
+    found = []
+    posn = 0
+    for row in array:
+        for col in row:
+            if col == segment:
+                found.append((posn // width, posn % width))
+            posn += 1
+
+    #buttom
+    miny = min([q[1] for q in found])
+    #top
+    maxy = max([q[1] for q in found])
+    #right
+    maxx = max([q[0] for q in found])
+    #left
+    minx = min([q[0] for q in found])
+
+    boundry_list = (maxy, minx, maxx, miny)
+    return boundry_list
+
+def calculate_center(top, buttom, left, right):
+    x = (top + buttom)/2
+    y = (left + right)/2
+    center = (x,y)
+    return center
+
+def calculate_dimentions(top, buttom, left, right):
+    h = (top - buttom)
+    w = (right - left)
+    dimentions = (h,w)
+    return dimentions

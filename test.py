@@ -6,6 +6,7 @@ import web_classification as clas
 import web_capture as cap
 import image_processing as im
 import modeling as m
+import scoring as sc
 
 from collections import Counter
 
@@ -22,18 +23,19 @@ def byteify(input):
     else:
         return input
 
-open('image_processing_debug.txt', 'w').close()
-open('elements.txt', 'w').close()
+open('tests/image_processing_debug.txt', 'w').close()
+open('tests/elements.txt', 'w').close()
+open('tests/model.txt', 'w').close()
 
-img1 = cv2.imread('samples/merchant1.jpg',cv2.IMREAD_GRAYSCALE)    
-img2 = cv2.imread('samples/merchant2.jpg',cv2.IMREAD_GRAYSCALE)    
-img3 = cv2.imread('samples/merchant3.jpg',cv2.IMREAD_GRAYSCALE)    
-img4 = cv2.imread('samples/merchant4.jpg',cv2.IMREAD_GRAYSCALE)    
-img5 = cv2.imread('samples/merchant5.jpg',cv2.IMREAD_GRAYSCALE)    
-img6 = cv2.imread('samples/merchant6.jpg',cv2.IMREAD_GRAYSCALE)    
-img7 = cv2.imread('samples/merchant7.jpg',cv2.IMREAD_GRAYSCALE)    
-img8 = cv2.imread('samples/merchant8.jpg',cv2.IMREAD_GRAYSCALE)
-img9 = cv2.imread('samples/merchant9.jpg',cv2.IMREAD_GRAYSCALE)
+# img1 = cv2.imread('samples/merchant1.jpg',cv2.IMREAD_GRAYSCALE)    
+# img2 = cv2.imread('samples/merchant2.jpg',cv2.IMREAD_GRAYSCALE)    
+# img3 = cv2.imread('samples/merchant3.jpg',cv2.IMREAD_GRAYSCALE)    
+# img4 = cv2.imread('samples/merchant4.jpg',cv2.IMREAD_GRAYSCALE)    
+# img5 = cv2.imread('samples/merchant5.jpg',cv2.IMREAD_GRAYSCALE)    
+# img6 = cv2.imread('samples/merchant6.jpg',cv2.IMREAD_GRAYSCALE)    
+# img7 = cv2.imread('samples/merchant7.jpg',cv2.IMREAD_GRAYSCALE)    
+# img8 = cv2.imread('samples/merchant8.jpg',cv2.IMREAD_GRAYSCALE)
+# img9 = cv2.imread('samples/merchant9.jpg',cv2.IMREAD_GRAYSCALE)
 
 # elements1 = im.image_processing(img1, verbose)
 # model = m.modeling(elements1, img1, verbose)
@@ -41,8 +43,8 @@ img9 = cv2.imread('samples/merchant9.jpg',cv2.IMREAD_GRAYSCALE)
 # elements2 = im.image_processing(img2, verbose)
 # model = m.modeling(elements2, img2, verbose)
 
-elements3 = im.image_processing(img3, verbose)
-model = m.modeling(elements3, img3, verbose)
+# elements3 = im.image_processing(img3, verbose)
+# model = m.modeling(elements3, img3, verbose)
 
 # elements4 = im.image_processing(img4, verbose)
 # model = m.modeling(elements4, img4, verbose)
@@ -74,3 +76,4 @@ model = m.modeling(elements3, img3, verbose)
 # elements = json.loads(elements)
 # elements = byteify(elements)
 
+sc.score(None, verbose)

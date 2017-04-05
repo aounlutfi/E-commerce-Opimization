@@ -11,9 +11,10 @@ Y = 1
 H = 0
 W = 1
 
-def modeling(elements, image, verbose = False):
+def modeling(elements, clean = True, image = None, verbose = False):
 	
-	elements = clean_duplicates(elements, verbose)
+	if clean:
+		elements = clean_duplicates(elements, verbose)
 	G = nx.Graph()
 
 	i = 0
@@ -55,12 +56,31 @@ def modeling(elements, image, verbose = False):
 				e = G.edge[elem['id']][element['id']]
 				if e:
 					print e
+	
+	model = "\n-------------------MODEL-------------------------------\n"
+	model += "nodes: " + str(G.number_of_nodes()) + "\n"
+	for i in range(0, G.number_of_nodes()):
+		model += str(G.node[i]) + "\n"
+	model += "links: " + str(G.number_of_edges()) + "\n"
+	model += str(G.edges()) + "\n"
+	for element in elements:
+		temp = list(elements)
+		temp.remove(element)		
+		for elem in temp:
+			e = G.edge[elem['id']][element['id']]
+			if e:
+				model += str(e) + "\n"
+	
+	file = open("tests/model.txt", 'a')
+	file.write(model)
+	file.close()
 
 	nx.draw_networkx_edges(G, positions)
 	nx.draw_networkx_edge_labels(G, positions)
 	nx.draw_networkx_nodes(G, positions, node_size=1000)
 	nx.draw_networkx_labels(G,positions,labels, font_color='w')
-	plt.imshow(image, "gray")
+	if image!= None:
+		plt.imshow(image, "gray")
 	plt.show()
 
 

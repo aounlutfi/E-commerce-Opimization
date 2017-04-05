@@ -1,0 +1,9 @@
+Element 1 is visa checkout
+element 2 is checkout
+element 3 is continue shopping
+
+element 1 left of element 2
+element 1 less than 100px from element 2
+width of element 1 more than element 2
+
+element 2 contains "checkout"
