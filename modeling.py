@@ -11,10 +11,9 @@ Y = 1
 H = 0
 W = 1
 
-def modeling(elements, clean = True, image = None, verbose = False):
+def modeling(elements, image = None, verbose = False):
 	
-	if clean:
-		elements = clean_duplicates(elements, verbose)
+	elements = clean_duplicates(elements, verbose)
 	G = nx.Graph()
 
 	i = 0
@@ -81,8 +80,13 @@ def modeling(elements, clean = True, image = None, verbose = False):
 	nx.draw_networkx_labels(G,positions,labels, font_color='w')
 	if image!= None:
 		plt.imshow(image, "gray")
-	plt.show()
+	try:
+		plt.show()
+		plt.savefig("model.jpg")
+	except Exception, e:
+        plt.savefig("model.jpg")
 
+	return (G, positions, labels)
 
 def clean_duplicates(elements, verbose):
 	

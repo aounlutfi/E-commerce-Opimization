@@ -1,0 +1,44 @@
+
+-------------------MODEL-------------------------------
+nodes: 3
+{'center': (1410, 993), 'text': u'secure checknut', 'dimentions': (493, 125), 'boundries': (1657, 931, 1056, 1164), 'type': 'checkout', 'id': 0}
+{'center': (897, 993), 'text': u'continue shopping', 'dimentions': (490, 121), 'boundries': (1142, 933, 1054, 652), 'type': 'continue shopping', 'id': 1}
+{'center': (2024, 985), 'text': u'checkout', 'dimentions': (209, 37), 'boundries': (2129, 967, 1004, 1920), 'type': 'checkout', 'id': 2}
+links: 3
+[(0, 1), (0, 2), (1, 2)]
+513
+614
+1127
+
+-------------------MODEL-------------------------------
+nodes: 3
+{'center': (1410, 993), 'text': u'secure checknut', 'dimentions': (493, 125), 'boundries': (1657, 931, 1056, 1164), 'type': 'checkout', 'id': 0}
+{'center': (897, 993), 'text': u'continue shopping', 'dimentions': (490, 121), 'boundries': (1142, 933, 1054, 652), 'type': 'continue shopping', 'id': 1}
+{'center': (2024, 985), 'text': u'checkout', 'dimentions': (209, 37), 'boundries': (2129, 967, 1004, 1920), 'type': 'checkout', 'id': 2}
+links: 3
+[(0, 1), (0, 2), (1, 2)]
+513
+614
+1127
+
+-------------------MODEL-------------------------------
+nodes: 3
+{'center': (1410, 993), 'text': u'secure checknut', 'dimentions': (493, 125), 'boundries': (1657, 931, 1056, 1164), 'type': 'checkout', 'id': 0}
+{'center': (897, 993), 'text': u'continue shopping', 'dimentions': (490, 121), 'boundries': (1142, 933, 1054, 652), 'type': 'continue shopping', 'id': 1}
+{'center': (2024, 985), 'text': u'checkout', 'dimentions': (209, 37), 'boundries': (2129, 967, 1004, 1920), 'type': 'checkout', 'id': 2}
+links: 3
+[(0, 1), (0, 2), (1, 2)]
+513
+614
+1127
+
+-------------------MODEL-------------------------------
+nodes: 3
+{'center': (1410, 993), 'text': u'secure checknut', 'dimentions': (493, 125), 'boundries': (1657, 931, 1056, 1164), 'type': 'checkout', 'id': 0}
+{'center': (897, 993), 'text': u'continue shopping', 'dimentions': (490, 121), 'boundries': (1142, 933, 1054, 652), 'type': 'continue shopping', 'id': 1}
+{'center': (2024, 985), 'text': u'checkout', 'dimentions': (209, 37), 'boundries': (2129, 967, 1004, 1920), 'type': 'checkout', 'id': 2}
+links: 3
+[(0, 1), (0, 2), (1, 2)]
+513
+614
+1127

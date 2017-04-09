@@ -1,10 +1,14 @@
 import web_classification as clas
 import web_capture as cap
 import image_processing as im
+import modeling as m
+import scoring as sc
+
+import cv2
 import threading
 
-file = open("urls","r") 
-urls = file.readlines()
+classification = None
+model = None
 
 class classificationThread (threading.Thread):
     def __init__(self, threadID, name):
@@ -25,24 +29,31 @@ class imageThread (threading.Thread):
 
     def run(self):
         print "Starting " + self.name
-        im.image_processing()
+        elements = im.image_processing(img)
+        model = m.modeling(elements, img)
         print "Exiting " + self.name
 
-#for url in urls:
+
+# file = open("urls","r") 
+# urls = file.readlines()
+# for url in urls:
+
+img = cv2.imread('samples/merchant1.jpg',cv2.IMREAD_GRAYSCALE)    
 url = 'http://google.com'
 print("for " + url)
+
 soup = cap.web_capture(url)
 if (soup ==1 ):
 	print ('error url refused access')
-	#break 
+
 else:
-	#cThread = classificationThread(1, "classification")
-	#iThread = imageThread(2, "image processing")
-	
-	#cThread.start()
-	#iThread.start()
-
-	#cThread.join()
-	#iThread.join()
-
-	##start modeling
+    cThread = classificationThread(1, "classification")
+    iThread = imageThread(2, "image processing")
+    
+    cThread.start()
+    iThread.start()
+    
+    cThread.join()
+    iThread.join()
+    
+    score = sc.score(model, classification)

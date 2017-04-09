@@ -1,0 +1,200 @@
+
+-------------------NEW TEST-------------------------------
+Elements 5: 
+ID: 0: 
+Type: checkout: 
+Boundries: (1657, 931, 1056, 1164): 
+Center: (1410, 993): 
+Dimentions: (493, 125): 
+Text: secure checknut: 
+-------
+ID: 1: 
+Type: continue shopping: 
+Boundries: (1142, 933, 1054, 652): 
+Center: (897, 993): 
+Dimentions: (490, 121): 
+Text: continue shopping: 
+-------
+ID: 2: 
+Type: checkout: 
+Boundries: (1653, 935, 1052, 1167): 
+Center: (1410, 993): 
+Dimentions: (486, 117): 
+Text: secure checknut: 
+-------
+ID: 3: 
+Type: checkout: 
+Boundries: (2129, 967, 1004, 1920): 
+Center: (2024, 985): 
+Dimentions: (209, 37): 
+Text: checkout: 
+-------
+ID: 4: 
+Type: continue shopping: 
+Boundries: (1043, 970, 1017, 750): 
+Center: (896, 993): 
+Dimentions: (293, 47): 
+Text: continue shopping: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 5: 
+ID: 0: 
+Type: checkout: 
+Boundries: (1657, 931, 1056, 1164): 
+Center: (1410, 993): 
+Dimentions: (493, 125): 
+Text: secure checknut: 
+-------
+ID: 1: 
+Type: continue shopping: 
+Boundries: (1142, 933, 1054, 652): 
+Center: (897, 993): 
+Dimentions: (490, 121): 
+Text: continue shopping: 
+-------
+ID: 2: 
+Type: checkout: 
+Boundries: (1653, 935, 1052, 1167): 
+Center: (1410, 993): 
+Dimentions: (486, 117): 
+Text: secure checknut: 
+-------
+ID: 3: 
+Type: checkout: 
+Boundries: (2129, 967, 1004, 1920): 
+Center: (2024, 985): 
+Dimentions: (209, 37): 
+Text: checkout: 
+-------
+ID: 4: 
+Type: continue shopping: 
+Boundries: (1043, 970, 1017, 750): 
+Center: (896, 993): 
+Dimentions: (293, 47): 
+Text: continue shopping: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 5: 
+ID: 0: 
+Type: checkout: 
+Boundries: (1657, 931, 1056, 1164): 
+Center: (1410, 993): 
+Dimentions: (493, 125): 
+Text: secure checknut: 
+-------
+ID: 1: 
+Type: continue shopping: 
+Boundries: (1142, 933, 1054, 652): 
+Center: (897, 993): 
+Dimentions: (490, 121): 
+Text: continue shopping: 
+-------
+ID: 2: 
+Type: checkout: 
+Boundries: (1653, 935, 1052, 1167): 
+Center: (1410, 993): 
+Dimentions: (486, 117): 
+Text: secure checknut: 
+-------
+ID: 3: 
+Type: checkout: 
+Boundries: (2129, 967, 1004, 1920): 
+Center: (2024, 985): 
+Dimentions: (209, 37): 
+Text: checkout: 
+-------
+ID: 4: 
+Type: continue shopping: 
+Boundries: (1043, 970, 1017, 750): 
+Center: (896, 993): 
+Dimentions: (293, 47): 
+Text: continue shopping: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 5: 
+ID: 0: 
+Type: checkout: 
+Boundries: (1657, 931, 1056, 1164): 
+Center: (1410, 993): 
+Dimentions: (493, 125): 
+Text: secure checknut: 
+-------
+ID: 1: 
+Type: continue shopping: 
+Boundries: (1142, 933, 1054, 652): 
+Center: (897, 993): 
+Dimentions: (490, 121): 
+Text: continue shopping: 
+-------
+ID: 2: 
+Type: checkout: 
+Boundries: (1653, 935, 1052, 1167): 
+Center: (1410, 993): 
+Dimentions: (486, 117): 
+Text: secure checknut: 
+-------
+ID: 3: 
+Type: checkout: 
+Boundries: (2129, 967, 1004, 1920): 
+Center: (2024, 985): 
+Dimentions: (209, 37): 
+Text: checkout: 
+-------
+ID: 4: 
+Type: continue shopping: 
+Boundries: (1043, 970, 1017, 750): 
+Center: (896, 993): 
+Dimentions: (293, 47): 
+Text: continue shopping: 
+-------
+
+-----------------END OF TEST-------------------------------
+
+-------------------NEW TEST-------------------------------
+Elements 5: 
+ID: 0: 
+Type: checkout: 
+Boundries: (1657, 931, 1056, 1164): 
+Center: (1410, 993): 
+Dimentions: (493, 125): 
+Text: secure checknut: 
+-------
+ID: 1: 
+Type: continue shopping: 
+Boundries: (1142, 933, 1054, 652): 
+Center: (897, 993): 
+Dimentions: (490, 121): 
+Text: continue shopping: 
+-------
+ID: 2: 
+Type: checkout: 
+Boundries: (1653, 935, 1052, 1167): 
+Center: (1410, 993): 
+Dimentions: (486, 117): 
+Text: secure checknut: 
+-------
+ID: 3: 
+Type: checkout: 
+Boundries: (2129, 967, 1004, 1920): 
+Center: (2024, 985): 
+Dimentions: (209, 37): 
+Text: checkout: 
+-------
+ID: 4: 
+Type: continue shopping: 
+Boundries: (1043, 970, 1017, 750): 
+Center: (896, 993): 
+Dimentions: (293, 47): 
+Text: continue shopping: 
+-------
+
+-----------------END OF TEST-------------------------------

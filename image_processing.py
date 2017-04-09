@@ -83,7 +83,7 @@ def find_buttons_seg(image, verbose=False):
     img = img_as_float(image)
     segments = felzenszwalb(img, scale=500, sigma=6, min_size=250)
     num_segments =  len(np.unique(segments))
-    print "number of Segments: " + str(num_segments)
+    print "- number of Segments: " + str(num_segments)
 
     if verbose:
         segmented_img = img_as_ubyte(mark_boundaries(img, segments))

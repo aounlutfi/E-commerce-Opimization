@@ -1,0 +1,50 @@
+
+-------------------NEW TEST-------------------------------
+Total Time: 75.5920000076
+Pre-processing Time: 10.8259999752
+Total segmentation Time: 64.7660000324
+Number of Segments: 69
+Average Segments Time: 0.938637681629
+Total Number of Elements: 5
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 76.2129998207
+Pre-processing Time: 11.1239995956
+Total segmentation Time: 65.0890002251
+Number of Segments: 69
+Average Segments Time: 0.943318843842
+Total Number of Elements: 5
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 74.9070000648
+Pre-processing Time: 9.84700012207
+Total segmentation Time: 65.0599999428
+Number of Segments: 69
+Average Segments Time: 0.942898549895
+Total Number of Elements: 5
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 77.3599998951
+Pre-processing Time: 9.59299969673
+Total segmentation Time: 67.7670001984
+Number of Segments: 69
+Average Segments Time: 0.982130437657
+Total Number of Elements: 5
+
+-----------------END OF TEST-----------------------------
+
+-------------------NEW TEST-------------------------------
+Total Time: 76.2610001564
+Pre-processing Time: 10.7520000935
+Total segmentation Time: 65.5090000629
+Number of Segments: 69
+Average Segments Time: 0.949405798014
+Total Number of Elements: 5
+
+-----------------END OF TEST-----------------------------

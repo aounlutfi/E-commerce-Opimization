@@ -76,4 +76,4 @@ open('tests/model.txt', 'w').close()
 # elements = json.loads(elements)
 # elements = byteify(elements)
 
-sc.score(None, verbose)
+sc.score(model, verbose)

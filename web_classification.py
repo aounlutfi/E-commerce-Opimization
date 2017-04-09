@@ -1,4 +1,5 @@
 import re
+import nltk.data
 
 from bs4 import BeautifulSoup
 from nltk.corpus import stopwords # Import the stop word list
@@ -7,6 +8,8 @@ from collections import Counter
 
 #set verbose to True for detailed output
 def web_classification(html, verbose = False):
+
+    nltk.data.path.append("nltk_data")
 
     #cleaning:
     #remove html tags

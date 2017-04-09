@@ -1,4 +1,4 @@
-
+import networkx as nx
 
 TOP = 0
 LEFT = 1
@@ -10,14 +10,41 @@ H = 0
 W = 1
 
 
-def score(model, verbose = False):
+def score(model, classification, verbose = False):
     
     score = 100
 
     with open("rules.txt") as f:
         rules = f.readlines()
     
-    elements = []
+    ruleset = parse_rules(rules)
+
+    if verbose:
+        for rule  in rules:
+            rule = str(rule).lower().replace("\n", "")
+            print rule
+        print "\n"
+        for rule in ruleset:
+            print rule
+
+    evaluate(ruleset, model)
+
+
+def evaluate(ruleset, model):
+    for rule in ruleset:
+        if rule["rule"] == "element":
+            pass
+        elif rule["rule"] == "alignement":
+            pass
+        elif rule["rule"] == "distance":
+            pass
+        elif rule["rule"] == "size":
+            pass
+        elif rule["rule"] == "text":
+            pass
+    
+def parse_rules(rules):
+        
     ruleset = []
 
     for rule in rules:
@@ -27,7 +54,7 @@ def score(model, verbose = False):
         if "element" in rule and "is" in rule:
             type = str(rule.split("is ")[1])
             id = rule.split()[1]
-            elements.append({"id": id, "type": type, "boundries": None, "center": None, "dimentions": None, "text":None})
+            ruleset.append({"rule": "element", "ids": (id), "parameter":type})
 
             #element 1 is visa checkout
         
@@ -70,12 +97,16 @@ def score(model, verbose = False):
             else:
                 print "Error parsing line " + str(rules.index(rule)+1)
             
+            #width of element 1 more than element 2    
             
         elif "element" in rule and "contains" in rule:
             id = rule.split()[1]
             text = rule.split('"')[1]
             ruleset.append({"rule": "text", "ids": id1, "parameter":text})            
             
+            #element 2 contains "checkout"
+
         else:
             if rule:
                 print "Error parsing line " + str(rules.index(rule)+1)
+    return ruleset
