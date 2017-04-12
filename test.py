@@ -30,7 +30,7 @@ open('tests/model.txt', 'w').close()
 # img1 = cv2.imread('samples/merchant1.jpg',cv2.IMREAD_GRAYSCALE)    
 # img2 = cv2.imread('samples/merchant2.jpg',cv2.IMREAD_GRAYSCALE)    
 # img3 = cv2.imread('samples/merchant3.jpg',cv2.IMREAD_GRAYSCALE)    
-# img4 = cv2.imread('samples/merchant4.jpg',cv2.IMREAD_GRAYSCALE)    
+img4 = cv2.imread('samples/merchant4.jpg',cv2.IMREAD_GRAYSCALE)    
 # img5 = cv2.imread('samples/merchant5.jpg',cv2.IMREAD_GRAYSCALE)    
 # img6 = cv2.imread('samples/merchant6.jpg',cv2.IMREAD_GRAYSCALE)    
 # img7 = cv2.imread('samples/merchant7.jpg',cv2.IMREAD_GRAYSCALE)    
@@ -66,14 +66,16 @@ open('tests/model.txt', 'w').close()
 
 
 # elem = json.dumps(elements4)
-
 # file = open("element", 'w')
 # file.write(elem)
 # file.close()
 
-# file = open("element", 'r')
-# elements = file.read()
-# elements = json.loads(elements)
-# elements = byteify(elements)
+file = open("element", 'r')
+elements = file.read()
+elements = json.loads(elements)
+elements = byteify(elements)
+elements4 = elements
 
-sc.score(model, verbose)
+model = m.modeling(elements4, img4, verbose)
+
+score = sc.score(model, verbose)

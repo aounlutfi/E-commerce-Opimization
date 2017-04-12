@@ -1,6 +1,5 @@
 Element 1 is visa checkout
 element 2 is checkout
-element 3 is continue shopping
 
 element 1 left of element 2
 element 1 less than 100px from element 2

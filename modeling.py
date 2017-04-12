@@ -37,13 +37,12 @@ def modeling(elements, image = None, verbose = False):
 			G.add_edge(elem["id"], element['id'])
 			d = distance(elem, element)
 			dist.append((i, "distance: " + str(d)))
- 			G.edge[elem['id']][element['id']] = d
+ 			G.edge[elem['id']][element['id']] = {"distance": d, "types": (elem['type'], element['type'])}
 			i+=1
 
 	print "nodes: " + str(G.number_of_nodes())
 
 	if verbose:
-		print "nodes: " + str(G.number_of_nodes())
 		for i in range(0, G.number_of_nodes()):
 			print G.node[i]
 		print "links: " + str(G.number_of_edges())
@@ -75,16 +74,17 @@ def modeling(elements, image = None, verbose = False):
 	file.close()
 
 	nx.draw_networkx_edges(G, positions)
-	nx.draw_networkx_edge_labels(G, positions)
+	nx.draw_networkx_edge_labels(G, positions,  font_size = 6)
 	nx.draw_networkx_nodes(G, positions, node_size=1000)
 	nx.draw_networkx_labels(G,positions,labels, font_color='w')
-	if image!= None:
+	if image is not None:
 		plt.imshow(image, "gray")
 	try:
-		plt.show()
+		if verbose:
+			plt.show()
 		plt.savefig("model.jpg")
 	except Exception, e:
-        plt.savefig("model.jpg")
+		plt.savefig("model.jpg")
 
 	return (G, positions, labels)
 

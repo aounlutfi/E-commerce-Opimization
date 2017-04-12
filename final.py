@@ -38,6 +38,10 @@ class imageThread (threading.Thread):
 # urls = file.readlines()
 # for url in urls:
 
+open('tests/image_processing_debug.txt', 'w').close()
+open('tests/elements.txt', 'w').close()
+open('tests/model.txt', 'w').close()
+
 img = cv2.imread('samples/merchant1.jpg',cv2.IMREAD_GRAYSCALE)    
 url = 'http://google.com'
 print("for " + url)

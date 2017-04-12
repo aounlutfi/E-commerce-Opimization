@@ -1,4 +1,5 @@
 import networkx as nx
+import math
 
 TOP = 0
 LEFT = 1
@@ -12,8 +13,6 @@ W = 1
 
 def score(model, classification, verbose = False):
     
-    score = 100
-
     with open("rules.txt") as f:
         rules = f.readlines()
     
@@ -30,14 +29,61 @@ def score(model, classification, verbose = False):
     evaluate(ruleset, model)
 
 
-def evaluate(ruleset, model):
+def evaluate(ruleset, model, verbose = False):
+    G = model[0]
+    positions = model[1]
+    labels = model[2]
+
+    score = 0
+
+    element_score = 100/len(ruleset)
+    alignment_score = 100/len(ruleset)
+    distance_score = 100/len(ruleset)
+    size_score = 100/len(ruleset)
+    text_score = 100/len(ruleset)
+
+    nodes = []
+    edges = []
+
+
     for rule in ruleset:
-        if rule["rule"] == "element":
+        if verbose:
             pass
-        elif rule["rule"] == "alignement":
+        if rule["rule"] == "element":
+            for i in range(0, G.number_of_nodes()):
+                if G.node[i]['type'] == rule['parameter']:
+                    score = score + element_score
+                    temp = dict(G.node[i])
+                    temp['id'] = rule['ids']
+                    nodes.append(temp)
+    
+    for element in nodes:
+		temp = list(nodes)
+		temp.remove(element)		
+		for elem in temp:
+			edges.append({'id': (element['id'], elem['id']), 'distance':distance(elem, element)})
+    
+    if verbose:
+        print "Nodes: "
+        for node in nodes:
+            print node
+        print "Edges: "
+        for edge in edges:
+            print edge
+                 
+    
+    for rule in ruleset:
+        if rule["rule"] == "alignment":
             pass
         elif rule["rule"] == "distance":
-            pass
+            if "+" in rule['parameter']:
+                dist = rule['parameter'].remove("+")
+                for edge in edges:
+                    pass
+            if "-" in rule['parameter']:
+                dist = rule['parameter'].replace("+", "")
+                for edge in edges:
+                    pass
         elif rule["rule"] == "size":
             pass
         elif rule["rule"] == "text":
@@ -110,3 +156,6 @@ def parse_rules(rules):
             if rule:
                 print "Error parsing line " + str(rules.index(rule)+1)
     return ruleset
+
+def distance(elem1, elem2):
+	return int(round(math.sqrt((elem1["center"][X] - elem2["center"][X])**2 + (elem1["center"][Y] - elem2["center"][Y])**2)))
