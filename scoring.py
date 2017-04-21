@@ -35,6 +35,7 @@ def evaluate(ruleset, model, verbose = False):
     labels = model[2]
 
     score = 0
+    recommendations = []
 
     element_score = 100/len(ruleset)
     alignment_score = 100/len(ruleset)
@@ -48,20 +49,22 @@ def evaluate(ruleset, model, verbose = False):
 
     for rule in ruleset:
         if verbose:
-            pass
+            print rule
         if rule["rule"] == "element":
             for i in range(0, G.number_of_nodes()):
                 if G.node[i]['type'] == rule['parameter']:
-                    score = score + element_score
+                    score += element_score
                     temp = dict(G.node[i])
                     temp['id'] = rule['ids']
                     nodes.append(temp)
+                else:
+                    recommendations.append(add_recommendation(rule))
     
     for element in nodes:
 		temp = list(nodes)
 		temp.remove(element)		
 		for elem in temp:
-			edges.append({'id': (element['id'], elem['id']), 'distance':distance(elem, element)})
+			edges.append({'ids': (element['id'], elem['id']), 'distance': distance(elem, element)})
     
     if verbose:
         print "Nodes: "
@@ -77,18 +80,34 @@ def evaluate(ruleset, model, verbose = False):
             pass
         elif rule["rule"] == "distance":
             if "+" in rule['parameter']:
-                dist = rule['parameter'].remove("+")
-                for edge in edges:
-                    pass
-            if "-" in rule['parameter']:
                 dist = rule['parameter'].replace("+", "")
                 for edge in edges:
-                    pass
+                    if edge['distance'] > dist and edge['ids'] == rule['ids']:
+                        score += distance_score
+                    else:
+                        recommendations.append(add_recommendation(rule))
+            if "-" in rule['parameter']:
+                dist = rule['parameter'].replace("-", "")
+                for edge in edges:
+                    if edge['distance'] < dist and edge['ids'] == rule['ids']:
+                        score += distance_score
+                    else:
+                        recommendations.append(add_recommendation(rule))
         elif rule["rule"] == "size":
-            pass
+            for node in nodes:
+                pass
         elif rule["rule"] == "text":
-            pass
-    
+            for node in nodes:
+                if node['id'] == rule['ids'] and (rule['parameter'] in node['text'].split()):
+                    score += text_score
+                else:
+                    recommendations.append(add_recommendation(rule))
+    print "Score: " + str(score)
+    print "Recommendations:"
+    for r in recommendations:
+        print r
+    return score, recommendations
+
 def parse_rules(rules):
         
     ruleset = []
@@ -107,7 +126,7 @@ def parse_rules(rules):
         elif "element" in rule and ("left of" in rule or "right of" in rule or "above" in rule or "below" in rule):
             id1 = rule.split()[1]
             id2 = rule.split()[-1]
-            parameter = rule.replace("element ", "").replace(" of", "").split()[1]
+            parameter = rule.replace("element ", "").replace(" of", ""  ).split()[1]
             ruleset.append({"rule": "alignment", "ids": (id1, id2), "parameter":parameter})
             
             #element 1 left of element 2
@@ -159,3 +178,19 @@ def parse_rules(rules):
 
 def distance(elem1, elem2):
 	return int(round(math.sqrt((elem1["center"][X] - elem2["center"][X])**2 + (elem1["center"][Y] - elem2["center"][Y])**2)))
+
+def add_recommendation(rule):
+    if rule['rule'] == "element":
+        return "There is no " + str(rule['type']) + " in the website"
+    
+    elif rule['rule'] == "alignment":
+        return "Element " + str(rule['ids'][0]) + " is not " + str(rule['parameter']) + " Element " + str(rule['ids'][1])
+
+    elif rule['rule'] == "distance":
+        pass
+    
+    elif rule['rule'] == "size":
+        pass
+    elif rule['rule'] == "text":
+        return "Element " + str(str(rule['ids']) + " does not contain" + str(rule['parameter'])
+        

@@ -37,7 +37,7 @@ def modeling(elements, image = None, verbose = False):
 			G.add_edge(elem["id"], element['id'])
 			d = distance(elem, element)
 			dist.append((i, "distance: " + str(d)))
- 			G.edge[elem['id']][element['id']] = {"distance": d, "types": (elem['type'], element['type'])}
+ 			G.edge[elem['id']][element['id']] = d
 			i+=1
 
 	print "nodes: " + str(G.number_of_nodes())

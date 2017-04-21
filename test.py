@@ -78,4 +78,4 @@ elements4 = elements
 
 model = m.modeling(elements4, img4, verbose)
 
-score = sc.score(model, verbose)
+score, recommendations = sc.score(model, verbose)
