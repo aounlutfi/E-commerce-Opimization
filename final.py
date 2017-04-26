@@ -34,10 +34,6 @@ class imageThread (threading.Thread):
         print "Exiting " + self.name
 
 
-# file = open("urls","r") 
-# urls = file.readlines()
-# for url in urls:
-
 open('tests/image_processing_debug.txt', 'w').close()
 open('tests/elements.txt', 'w').close()
 open('tests/model.txt', 'w').close()

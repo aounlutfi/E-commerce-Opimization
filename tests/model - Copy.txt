@@ -1,0 +1,75 @@
+
+-------------------MODEL-------------------------------
+nodes: 3
+{'center': (1410, 993), 'text': u'secure clmcknut', 'dimentions': (493, 125), 'boundries': (1657, 931, 1056, 1164), 'type': 'checkout', 'id': 0}
+{'center': (897, 993), 'text': u'continue shopping', 'dimentions': (490, 121), 'boundries': (1142, 933, 1054, 652), 'type': 'continue shopping', 'id': 1}
+{'center': (1983, 981), 'text': 'Visa Checkout', 'dimentions': (495, 82), 'boundries': (2231, 940, 1022, 1736), 'type': 'visa checkout', 'id': 2}
+links: 3
+[(0, 1), (0, 2), (1, 2)]
+513
+573
+1086
+
+-------------------MODEL-------------------------------
+nodes: 4
+{'center': (1584, 329), 'text': 'Visa Checkout', 'dimentions': (350, 89), 'boundries': (1759, 285, 374, 1409), 'type': 'visa checkout', 'id': 0}
+{'center': (1204, 328), 'text': u'a secure checkout', 'dimentions': (320, 71), 'boundries': (1364, 293, 364, 1044), 'type': 'checkout', 'id': 1}
+{'center': (1568, 1001), 'text': 'Visa Checkout', 'dimentions': (398, 207), 'boundries': (1767, 898, 1105, 1369), 'type': 'visa checkout', 'id': 2}
+{'center': (998, 1025), 'text': u'8 secure checkout', 'dimentions': (533, 89), 'boundries': (1265, 981, 1070, 732), 'type': 'checkout', 'id': 3}
+links: 6
+[(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)]
+380
+672
+765
+910
+727
+571
+
+-------------------MODEL-------------------------------
+nodes: 4
+{'center': (1170, 157), 'text': u') checkout', 'dimentions': (350, 83), 'boundries': (1345, 116, 199, 995), 'type': 'checkout', 'id': 0}
+{'center': (768, 158), 'text': 'Visa Checkout', 'dimentions': (345, 83), 'boundries': (941, 117, 200, 596), 'type': 'visa checkout', 'id': 1}
+{'center': (768, 1130), 'text': 'Visa Checkout', 'dimentions': (345, 82), 'boundries': (941, 1089, 1171, 596), 'type': 'visa checkout', 'id': 2}
+{'center': (1170, 1131), 'text': u') checkout', 'dimentions': (350, 82), 'boundries': (1345, 1090, 1172, 995), 'type': 'checkout', 'id': 3}
+links: 6
+[(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)]
+402
+1053
+972
+974
+1053
+402
+
+-------------------MODEL-------------------------------
+nodes: 2
+{'center': (1166, 186), 'text': 'Visa Checkout', 'dimentions': (112, 91), 'boundries': (1222, 141, 232, 1110), 'type': 'visa checkout', 'id': 0}
+{'center': (1148, 988), 'text': 'Visa Checkout', 'dimentions': (284, 98), 'boundries': (1290, 939, 1037, 1006), 'type': 'visa checkout', 'id': 1}
+links: 1
+[(0, 1)]
+802
+
+-------------------MODEL-------------------------------
+nodes: 2
+{'center': (688, 1356), 'text': 'Visa Checkout', 'dimentions': (366, 215), 'boundries': (871, 1249, 1464, 505), 'type': 'visa checkout', 'id': 0}
+{'center': (687, 1635), 'text': 'Visa Checkout', 'dimentions': (357, 87), 'boundries': (866, 1592, 1679, 509), 'type': 'visa checkout', 'id': 1}
+links: 1
+[(0, 1)]
+279
+
+-------------------MODEL-------------------------------
+nodes: 1
+{'center': (234, 717), 'text': 'Visa Checkout', 'dimentions': (240, 96), 'boundries': (354, 669, 765, 114), 'type': 'visa checkout', 'id': 0}
+links: 0
+[]
+
+-------------------MODEL-------------------------------
+nodes: 1
+{'center': (523, 1403), 'text': 'Visa Checkout', 'dimentions': (974, 123), 'boundries': (1010, 1342, 1465, 36), 'type': 'visa checkout', 'id': 0}
+links: 0
+[]
+
+-------------------MODEL-------------------------------
+nodes: 1
+{'center': (435, 460), 'text': 'Visa Checkout', 'dimentions': (393, 100), 'boundries': (632, 410, 510, 239), 'type': 'visa checkout', 'id': 0}
+links: 0
+[]

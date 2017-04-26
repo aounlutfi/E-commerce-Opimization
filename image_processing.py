@@ -67,8 +67,6 @@ def image_processing(image, verbose=False):
     return elements
 
 
-
-
 def find_buttons_seg(image, verbose=False):
 
     id = 0
@@ -83,7 +81,7 @@ def find_buttons_seg(image, verbose=False):
     img = img_as_float(image)
     segments = felzenszwalb(img, scale=500, sigma=6, min_size=250)
     num_segments =  len(np.unique(segments))
-    print "- number of Segments: " + str(num_segments)
+    print "number of Segments: " + str(num_segments)
 
     if verbose:
         segmented_img = img_as_ubyte(mark_boundaries(img, segments))
@@ -93,69 +91,87 @@ def find_buttons_seg(image, verbose=False):
     seg_time_finish = []
     elements = []
 
+    template = cv2.imread("vco_template.jpg",cv2.IMREAD_GRAYSCALE)
+
     for n in range(0, num_segments):
         seg_time_start.append(time.time())
 
         boundries = find_segment_corners(segments, n)
         segment_image = image[boundries[LEFT]:boundries[RIGHT], boundries[BUTTOM]:boundries[TOP]]
-        segment_image = (segment_image*255).astype(int)
+        if abs(boundries[LEFT]-boundries[RIGHT])<10 or abs(boundries[BUTTOM]-boundries[TOP]) < 10:
+            print "segment " + str(n) + " too small to process"
+        else:
 
-        img = Image.fromarray(np.uint8(segment_image*255))
-        
-        try:
-
-            text = image_to_string(img)
-            text = "".join([s for s in text.strip().splitlines(True) if s.strip("\r\n").strip()])
-            text = text.encode('ascii', 'ignore').decode('ascii')
-            text = text.lower()
-
-            if verbose:
-                print text
-                plt.imshow(segment_image), plt.show()
-
-            cnt = "continue"
-            shp = "shopping"
-            chk = "checkout"
-            visa = "visa"
-            book = "book"
-            pch = "purchase"
-            scu = "secure"
-            pay = "pay"
-
-
-            if(len(text.split())<4):
-                if (visa in text.split() and chk in text.split()) or (visa in text.split() and len(text.split())<3):
-                    elements.append(add_element(boundries, "visa checkout", text, id))
-                    id+=1
-                    print "matched visa checkout button"
-                elif (chk in text.split()):
-                    elements.append(add_element(boundries, "checkout", text, id))
-                    id+=1
-                    print "matched checkout button"
-                elif book in text.split():
-                    elements.append(add_element(boundries, "checkout", text, id))
-                    id+=1
-                    print "matched book button"
-                elif pch in text.split():
-                    elements.append(add_element(boundries, "checkout", text, id))
-                    id+=1
-                    print "matched purchase button"
-                elif scu in text.split():
-                    elements.append(add_element(boundries, "checkout", text, id))
-                    id+=1
-                    print "matched secure button"
-                elif shp in text and cnt in text:
-                    elements.append(add_element(boundries, "continue shopping", text, id))
-                    id+=1
+            try:                
+                if verbose:
+                    print text
+                    plt.imshow(segment_image), plt.show()
+                
+                if match_template(template, segment_image, verbose):
+                    if abs(boundries[LEFT]-boundries[RIGHT])<250 and abs(boundries[BUTTOM]-boundries[TOP])<1000:
+                        elements.append(add_element(boundries, "visa checkout", "Visa Checkout", id))
+                        id+=1
+                        print "matched visa checkout button"
+                    else:
+                        print "segment" + str(n) + " too large for visa checkout"
                 else:
-                    print "No button found in segment " + str(n)
-            else:
-                print "No button found in segment " + str(n)
-        except Exception, e:
-            print e
+                    text = OCR(segment_image)
+
+                    cnt = "continue"
+                    shp = "shopping"
+                    chk = "checkout"
+                    book = "book"
+                    pch = "purchase"
+                    scu = "secure"
+                    pay = "pay"
+                    visa = "visa"
+                    back = "back"
+                    cncl = "cancel"
+                    
+
+                    if(len(text.split())<4):
+                        if (chk in text.split() and visa not in text.split()):
+                            elements.append(add_element(boundries, "checkout", text, id))
+                            id+=1
+                            print "matched checkout button"
+                        elif book in text.split():
+                            elements.append(add_element(boundries, "checkout", text, id))
+                            id+=1
+                            print "matched book button"
+                        elif pch in text.split():
+                            elements.append(add_element(boundries, "checkout", text, id))
+                            id+=1
+                            print "matched purchase button"
+                        elif scu in text.split():
+                            elements.append(add_element(boundries, "checkout", text, id))
+                            id+=1
+                            print "matched secure button"
+                        elif pay in text.split():
+                            elements.append(add_element(boundries, "checkout", text, id))
+                            id+=1
+                            print "matched pay button"
+                        elif cnt in text.split() and shp not in text.split():
+                            elements.append(add_element(boundries, "checkout", text, id))
+                            id+=1
+                            print "matched chekcout button"
+                        elif shp in text.split() and cnt in text.split():
+                            elements.append(add_element(boundries, "continue shopping", text, id))
+                            id+=1
+                            print "matched continue button"
+                        elif cncl in text.split() or back in text.split():
+                            elements.append(add_element(boundries, "continue shopping", text, id))
+                            id+=1
+                            print "matched continue button"
+                        else:
+                            print "No button found in segment " + str(n)
+                    else:
+                        print "No button found in segment " + str(n)
+            
+            except Exception, e:
+                print e
 
         seg_time_finish.append(time.time())
-
+    print "number of elements: " + str(len(elements))
     return elements, num_segments, list(map(operator.sub, seg_time_finish, seg_time_start))
 
 def add_element(boundries, name, text, id):
@@ -202,3 +218,125 @@ def calculate_dimentions(top, buttom, left, right):
     w = (right - left)
     dimentions = (h,w)
     return dimentions
+
+def match_template(img1, img2, verbose = False):
+    img2 = cv2.copyMakeBorder(img2, 100, 100, 100, 100, cv2.BORDER_CONSTANT, value=0)
+
+    sift = cv2.SIFT()
+    kp1, des1 = sift.detectAndCompute(img1,None)
+    kp2, des2 = sift.detectAndCompute(img2,None)
+
+    FLANN_INDEX_KDTREE = 0
+    index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 5)
+    search_params = dict(checks = 50)
+
+    flann = cv2.FlannBasedMatcher(index_params, search_params)
+    matches = flann.knnMatch(des1,des2,k=2)
+
+    # store all the good matches as per Lowe's ratio test.
+    good = []
+    for m,n in matches:
+        if m.distance < 0.7*n.distance:
+            good.append(m)
+
+
+    MIN_MATCH_COUNT = 10
+    if len(good)>MIN_MATCH_COUNT:
+        if verbose:
+            src_pts = np.float32([ kp1[m.queryIdx].pt for m in good ]).reshape(-1,1,2)
+            dst_pts = np.float32([ kp2[m.trainIdx].pt for m in good ]).reshape(-1,1,2)
+
+            M, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC,5.0)
+            matchesMask = mask.ravel().tolist()
+
+            h,w = img1.shape
+            pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2)
+            dst = cv2.perspectiveTransform(pts,M)
+
+            img2 = cv2.polylines(img2,[np.int32(dst)],True,255,3)
+            img3 = cv2.drawMatches(img1,kp1,img2,kp2,good)
+            cv2.imshow("matches", img3)
+        return True
+        
+    else: return False
+
+
+
+  
+def OCR(img):
+    
+    img = (img*255).astype(int)  
+    img = Image.fromarray(np.uint8(img*255))
+    text = image_to_string(img)
+    text = "".join([s for s in text.strip().splitlines(True) if s.strip("\r\n").strip()])
+    text = text.encode('ascii', 'ignore').decode('ascii')
+    text = text.lower()
+    return text
+
+
+
+def drawMatches(img1, kp1, img2, kp2, matches):
+    """
+    Implementation of cv2.drawMatches by rayryeng as OpenCV 2.4.9
+    does not have this function available but it's supported in
+    OpenCV 3.0.0
+
+    This function takes in two images with their associated 
+    keypoints, as well as a list of DMatch data structure (matches) 
+    that contains which keypoints matched in which images.
+
+    An image will be produced where a montage is shown with
+    the first image followed by the second image beside it.
+
+    Keypoints are delineated with circles, while lines are connected
+    between matching keypoints.
+
+    img1,img2 - Grayscale images
+    kp1,kp2 - Detected list of keypoints through any of the OpenCV keypoint 
+              detection algorithms
+    matches - A list of matches of corresponding keypoints through any
+              OpenCV keypoint matching algorithm
+    """
+
+    # Create a new output image that concatenates the two images together
+    # (a.k.a) a montage
+    rows1 = img1.shape[0]
+    cols1 = img1.shape[1]
+    rows2 = img2.shape[0]
+    cols2 = img2.shape[1]
+
+    out = np.zeros((max([rows1,rows2]),cols1+cols2,3), dtype='uint8')
+
+    # Place the first image to the left
+    out[:rows1,:cols1] = np.dstack([img1, img1, img1])
+
+    # Place the next image to the right of it
+    out[:rows2,cols1:] = np.dstack([img2, img2, img2])
+
+    # For each pair of points we have between both images
+    # draw circles, then connect a line between them
+    for mat in matches:
+
+        # Get the matching keypoints for each of the images
+        img1_idx = mat.queryIdx
+        img2_idx = mat.trainIdx
+
+        # x - columns
+        # y - rows
+        (x1,y1) = kp1[img1_idx].pt
+        (x2,y2) = kp2[img2_idx].pt
+
+        # Draw a small circle at both co-ordinates
+        # radius 4
+        # colour blue
+        # thickness = 1
+        cv2.circle(out, (int(x1),int(y1)), 4, (255, 0, 0), 1)   
+        cv2.circle(out, (int(x2)+cols1,int(y2)), 4, (255, 0, 0), 1)
+
+        # Draw a line in between the two points
+        # thickness = 1
+        # colour blue
+        cv2.line(out, (int(x1),int(y1)), (int(x2)+cols1,int(y2)), (255, 0, 0), 1)
+
+    # Also return the image if you'd like a copy
+    return out

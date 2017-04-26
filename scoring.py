@@ -180,17 +180,15 @@ def distance(elem1, elem2):
 	return int(round(math.sqrt((elem1["center"][X] - elem2["center"][X])**2 + (elem1["center"][Y] - elem2["center"][Y])**2)))
 
 def add_recommendation(rule):
-    if rule['rule'] == "element":
-        return "There is no " + str(rule['type']) + " in the website"
+    return "unknown rule"
     
-    elif rule['rule'] == "alignment":
-        return "Element " + str(rule['ids'][0]) + " is not " + str(rule['parameter']) + " Element " + str(rule['ids'][1])
-
-    elif rule['rule'] == "distance":
-        pass
-    
-    elif rule['rule'] == "size":
-        pass
-    elif rule['rule'] == "text":
-        return "Element " + str(str(rule['ids']) + " does not contain" + str(rule['parameter'])
-        
+    # if rule['rule'] == "element":
+    #     return "There is no " + str(rule['type']) + " in the website"
+    # elif rule['rule'] == "alignment":
+    #     return "Element " + str(rule['ids'][0]) + " is not " + str(rule['parameter']) + " Element " + str(rule['ids'][1])
+    # elif rule['rule'] == "distance":
+    #     return 'dist'
+    # elif rule['rule'] == "size":
+    #     return 'size'
+    # elif rule['rule'] == "text":
+    #     return ("Element " + str(str(rule['ids']) + " does not contain " + str(rule['parameter']))
