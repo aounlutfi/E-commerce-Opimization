@@ -1,0 +1,11 @@
+
+-------------------MODEL-------------------------------
+nodes: 3
+{'center': [1410, 993], 'text': 'secure checknut', 'dimentions': [493, 125], 'boundries': [1657, 931, 1056, 1164], 'type': 'checkout', 'id': 0}
+{'center': [897, 993], 'text': 'continue shopping', 'dimentions': [490, 121], 'boundries': [1142, 933, 1054, 652], 'type': 'continue shopping', 'id': 1}
+{'center': [1983, 981], 'text': 'Visa Checkout', 'dimentions': [495, 82], 'boundries': [2231, 940, 1022, 1736], 'type': 'visa checkout', 'id': 2}
+links: 3
+[(0, 1), (0, 2), (1, 2)]
+513
+573
+1086

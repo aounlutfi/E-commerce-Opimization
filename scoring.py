@@ -9,7 +9,9 @@ X = 0
 Y = 1
 H = 0
 W = 1
-
+VCO = "visa checkout"
+CHK = "checkout"
+CNT = "continue shopping"
 
 def score(model, classification, verbose = False):
     
@@ -43,9 +45,11 @@ def evaluate(ruleset, model, verbose = False):
     size_score = 100/len(ruleset)
     text_score = 100/len(ruleset)
 
-    nodes = []
+    vcoList = []
+    chkList = []
+    cntList = []
     edges = []
-
+    vcoID = chkID = cntID = 0
 
     for rule in ruleset:
         if verbose:
@@ -54,30 +58,89 @@ def evaluate(ruleset, model, verbose = False):
             for i in range(0, G.number_of_nodes()):
                 if G.node[i]['type'] == rule['parameter']:
                     score += element_score
-                    temp = dict(G.node[i])
-                    temp['id'] = rule['ids']
-                    nodes.append(temp)
-                else:
-                    recommendations.append(add_recommendation(rule))
+                    if rule['parameter']==VCO:
+                        vcoID = rule['ids']
+                        vcoList.append(G.node[i])
+                    elif rule['paramater']==CHK:
+                        chkID = rule['ids']
+                        chkList.append(G.node[i])
+                    elif rule['paramater']==CNT:
+                        cntID = rule['ids']
+                        cntList.append(G.node[i])
+            ruleset.remove(rule)
+    length = 0
+    if len(vcoList)>0:
+        length += len(vcoList)
+    if len(chkList)>0:
+        length += len(chkList)
+    if len(cntList)>0:
+        length += len(cntList)
+    score /= length
     
-    for element in nodes:
-		temp = list(nodes)
-		temp.remove(element)		
-		for elem in temp:
-			edges.append({'ids': (element['id'], elem['id']), 'distance': distance(elem, element)})
+    # for element in nodes:
+	# 	temp = list(nodes)
+	# 	temp.remove(element)		
+	# 	for elem in temp:
+	# 		edges.append({'ids': (element['id'], elem['id']), 'distance': distance(elem, element)})
     
     if verbose:
-        print "Nodes: "
-        for node in nodes:
+        print "VCO Nodes: "
+        for node in vcoList:
             print node
-        print "Edges: "
-        for edge in edges:
-            print edge
+        print "Chekcout Nodes: "
+        for node in chkList:
+            print node
+        print "Continue Nodes: "
+        for node in cntList:
+            print node
+
+        # print "Edges: "
+        # for edge in edges:
+        #     print edge
                  
     
     for rule in ruleset:
         if rule["rule"] == "alignment":
-            pass
+            id1 = rule['ids'][0]
+            id2 = rule['ids'][1]
+            
+            if rule['parameter']=="left of":
+                for elem in nodes:
+                    if elem['type'] == id1:
+                        for element in nodes:
+                            if element['type'] == id2:
+                                if elem['center'][0]<element['center'][0]:
+                                    score+=alignment_score
+                                else:
+                                    recommendations.append(add_recommendation(rule))
+            elif rule['parameter']=="right of":
+                for elem in nodes:
+                    if elem['type'] == id1:
+                        for element in nodes:
+                            if element['type'] == id2:
+                                if elem['center'][0]>element['center'][0]:
+                                    score+=alignment_score
+                                else:
+                                    recommendations.append(add_recommendation(rule))
+            elif rule['parameter']=="above":
+                for elem in nodes:
+                    if elem['type'] == id1:
+                        for element in nodes:
+                            if element['type'] == id2:
+                                if elem['center'][1]<element['center'][1]:
+                                    score+=alignment_score
+                                else:
+                                    recommendations.append(add_recommendation(rule))
+            elif rule['parameter']=="below":
+                for elem in nodes:
+                    if elem['type'] == id1:
+                        for element in nodes:
+                            if element['type'] == id2:
+                                if elem['center'][1]>element['center'][1]:
+                                    score+=alignment_score
+                                else:
+                                    recommendations.append(add_recommendation(rule))
+
         elif rule["rule"] == "distance":
             if "+" in rule['parameter']:
                 dist = rule['parameter'].replace("+", "")
@@ -86,6 +149,7 @@ def evaluate(ruleset, model, verbose = False):
                         score += distance_score
                     else:
                         recommendations.append(add_recommendation(rule))
+
             if "-" in rule['parameter']:
                 dist = rule['parameter'].replace("-", "")
                 for edge in edges:
@@ -93,15 +157,18 @@ def evaluate(ruleset, model, verbose = False):
                         score += distance_score
                     else:
                         recommendations.append(add_recommendation(rule))
+        
         elif rule["rule"] == "size":
             for node in nodes:
                 pass
+        
         elif rule["rule"] == "text":
             for node in nodes:
                 if node['id'] == rule['ids'] and (rule['parameter'] in node['text'].split()):
                     score += text_score
                 else:
                     recommendations.append(add_recommendation(rule))
+    
     print "Score: " + str(score)
     print "Recommendations:"
     for r in recommendations:

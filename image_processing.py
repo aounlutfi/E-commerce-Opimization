@@ -19,8 +19,11 @@ X = 0
 Y = 1
 H = 0
 W = 1
+VCO = "visa checkout"
+CHK = "checkout"
+CNT = "continue shopping"
 
-def image_processing(image, verbose=False):
+def image_processing(image, verbose=False, debug=False):
 
     print "---NEW IMAGE---"
 
@@ -30,39 +33,40 @@ def image_processing(image, verbose=False):
 
     time_end = time.time()
 
-    elem = "\n-------------------NEW TEST-------------------------------\n"
-    elem += "Elements " + str(len(elements)) + ": \n"
-    for element in elements:
-        elem += "ID: " + str(element["id"])+ ": \n"
-        elem += "Type: " + element["type"] + ": \n"
-        elem += "Boundries: " + str(element["boundries"])+ ": \n"
-        elem += "Center: " + str(element["center"])+ ": \n"
-        elem += "Dimentions: " + str(element["dimentions"])+ ": \n"
-        elem += "Text: " + element["text"]+ ": \n"
-        elem += "-------\n"
-    elem += "\n-----------------END OF TEST-------------------------------\n"
+    if debug""
+        elem = "\n-------------------NEW TEST-------------------------------\n"
+        elem += "Elements " + str(len(elements)) + " :\n"
+        for element in elements:
+            elem += "ID: " + str(element["id"])+ " \n"
+            elem += "Type: " + element["type"] + " \n"
+            elem += "Boundries: " + str(element["boundries"])+ " \n"
+            elem += "Center: " + str(element["center"])+ " \n"
+            elem += "Dimentions: " + str(element["dimentions"])+ " \n"
+            elem += "Text: " + element["text"]+ " \n"
+            elem += "-------\n"
+        elem += "\n-----------------END OF TEST-------------------------------\n"
 
-    file = open("tests/elements.txt", 'a')
-    file.write(elem)
-    file.close()
+        file = open("tests/elements.txt", 'a')
+        file.write(elem)
+        file.close()
 
-    total_time = time_end-time_start
-    total_seg_time = sum(seg_times)
-    avg_seg_time = total_seg_time/seg_num
-    pp_time = total_time - total_seg_time
+        total_time = time_end-time_start
+        total_seg_time = sum(seg_times)
+        avg_seg_time = total_seg_time/seg_num
+        pp_time = total_time - total_seg_time
 
-    debug = "\n-------------------NEW TEST-------------------------------\n"
-    debug += "Total Time: " + str(total_time) + "\n"
-    debug += "Pre-processing Time: " + str(pp_time) + "\n"
-    debug += "Total segmentation Time: " + str(total_seg_time) + "\n"
-    debug += "Number of Segments: " + str(seg_num) + "\n"
-    debug += "Average Segments Time: " + str(avg_seg_time) + "\n"
-    debug += "Total Number of Elements: " + str(len(elements)) + "\n"
-    debug += "\n-----------------END OF TEST-----------------------------\n"
+        debug = "\n-------------------NEW TEST-------------------------------\n"
+        debug += "Total Time: " + str(total_time) + "\n"
+        debug += "Pre-processing Time: " + str(pp_time) + "\n"
+        debug += "Total segmentation Time: " + str(total_seg_time) + "\n"
+        debug += "Number of Segments: " + str(seg_num) + "\n"
+        debug += "Average Segments Time: " + str(avg_seg_time) + "\n"
+        debug += "Total Number of Elements: " + str(len(elements)) + "\n"
+        debug += "\n-----------------END OF TEST-----------------------------\n"
 
-    file = open("tests/image_processing_debug.txt", 'a')
-    file.write(debug)
-    file.close()
+        file = open("tests/image_processing_debug.txt", 'a')
+        file.write(debug)
+        file.close()
 
     return elements
 
@@ -109,7 +113,7 @@ def find_buttons_seg(image, verbose=False):
                 
                 if match_template(template, segment_image, verbose):
                     if abs(boundries[LEFT]-boundries[RIGHT])<250 and abs(boundries[BUTTOM]-boundries[TOP])<1000:
-                        elements.append(add_element(boundries, "visa checkout", "Visa Checkout", id))
+                        elements.append(add_element(boundries, VCO, "Visa Checkout", id))
                         id+=1
                         print "matched visa checkout button"
                     else:
@@ -131,35 +135,35 @@ def find_buttons_seg(image, verbose=False):
 
                     if(len(text.split())<4):
                         if (chk in text.split() and visa not in text.split()):
-                            elements.append(add_element(boundries, "checkout", text, id))
+                            elements.append(add_element(boundries, CHK, text, id))
                             id+=1
                             print "matched checkout button"
                         elif book in text.split():
-                            elements.append(add_element(boundries, "checkout", text, id))
+                            elements.append(add_element(boundries, CHK, text, id))
                             id+=1
                             print "matched book button"
                         elif pch in text.split():
-                            elements.append(add_element(boundries, "checkout", text, id))
+                            elements.append(add_element(boundries, CHK, text, id))
                             id+=1
                             print "matched purchase button"
                         elif scu in text.split():
-                            elements.append(add_element(boundries, "checkout", text, id))
+                            elements.append(add_element(boundries, CHK, text, id))
                             id+=1
                             print "matched secure button"
                         elif pay in text.split():
-                            elements.append(add_element(boundries, "checkout", text, id))
+                            elements.append(add_element(boundries, CHK, text, id))
                             id+=1
                             print "matched pay button"
                         elif cnt in text.split() and shp not in text.split():
-                            elements.append(add_element(boundries, "checkout", text, id))
+                            elements.append(add_element(boundries, CHK, text, id))
                             id+=1
                             print "matched chekcout button"
                         elif shp in text.split() and cnt in text.split():
-                            elements.append(add_element(boundries, "continue shopping", text, id))
+                            elements.append(add_element(boundries, CNT, text, id))
                             id+=1
                             print "matched continue button"
                         elif cncl in text.split() or back in text.split():
-                            elements.append(add_element(boundries, "continue shopping", text, id))
+                            elements.append(add_element(boundries, CNT, text, id))
                             id+=1
                             print "matched continue button"
                         else:
