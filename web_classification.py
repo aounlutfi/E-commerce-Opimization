@@ -75,29 +75,19 @@ def bag_of_words( text ):
     # Function to convert a raw review to a string of words
     # The input is a single string (a raw movie review), and 
     # the output is a single string (a preprocessed movie review)
-    #
     # 1. break into lines and remove leading and trailing space on each
     lines = (line.strip() for line in text.splitlines())
-    #
     # 2. break multi-headlines into a line each
     chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
-    #
     # 3. drop blank lines
     text = '\n'.join(chunk for chunk in chunks if chunk)
-    #
     # 4. Remove non-letters        
     letters_only = re.sub("[^a-zA-Z]", " ", text) 
-    #
     # 5. Convert to lower case, split into individual words
     words = letters_only.lower().split()                             
-    #
-    # 6. In Python, searching a set is much faster than searching
-    #   a list, so convert the stop words to a set
+    # 6. In Python, searching a set is much faster than searching a list, so convert the stop words to a set
     stops = set(stopwords.words("english"))                  
-    # 
     # 7. Remove stop words
     meaningful_words = [w for w in words if not w in stops]   
-    #
-    # 8. Join the words back into one string separated by space, 
-    # and return the result.
+    # 8. Join the words back into one string separated by space, and return the result.
     return( " ".join( meaningful_words ))

@@ -15,9 +15,11 @@ CNT = "continue shopping"
 
 def score(model, classification, verbose = False):
     
+    #read rules
     with open("rules.txt") as f:
         rules = f.readlines()
     
+    #decode the rules
     ruleset = parse_rules(rules)
 
     if verbose:
@@ -27,11 +29,13 @@ def score(model, classification, verbose = False):
         print "\n"
         for rule in ruleset:
             print rule
-
+    
+    #chek whether the rules are valide for the model
     evaluate(ruleset, model)
 
 
 def evaluate(ruleset, model, verbose = False):
+    #decode the model object
     G = model[0]
     positions = model[1]
     labels = model[2]
@@ -39,6 +43,7 @@ def evaluate(ruleset, model, verbose = False):
     score = 0
     recommendations = []
 
+    #increment score values 
     element_score = 100/len(ruleset)
     alignment_score = 100/len(ruleset)
     distance_score = 100/len(ruleset)
@@ -51,6 +56,7 @@ def evaluate(ruleset, model, verbose = False):
     edges = []
     vcoID = chkID = cntID = 0
 
+    #go through rule by rule, check if the rule defines an element, if so, append the new element
     for rule in ruleset:
         if verbose:
             print rule
@@ -98,7 +104,8 @@ def evaluate(ruleset, model, verbose = False):
         # for edge in edges:
         #     print edge
                  
-    
+    #go through the remaining rules, and for each type, check the paramaters and match them with the model
+    #for each rule, add a recommendation to the list if the rule is broken
     for rule in ruleset:
         if rule["rule"] == "alignment":
             id1 = rule['ids'][0]
@@ -179,25 +186,23 @@ def parse_rules(rules):
         
     ruleset = []
 
+    #for each rule, check the rule type, then for each type, check the parameter
+    #for each parameter, obtaint he parameter values and obtain
+    #for all the elements in the rule, obtain the paramater type.
     for rule in rules:
-        
-        rule = str(rule).lower().replace("\n", "")
+                rule = str(rule).lower().replace("\n", "")
 
         if "element" in rule and "is" in rule:
             type = str(rule.split("is ")[1])
             id = rule.split()[1]
             ruleset.append({"rule": "element", "ids": (id), "parameter":type})
 
-            #element 1 is visa checkout
-        
         elif "element" in rule and ("left of" in rule or "right of" in rule or "above" in rule or "below" in rule):
             id1 = rule.split()[1]
             id2 = rule.split()[-1]
             parameter = rule.replace("element ", "").replace(" of", ""  ).split()[1]
             ruleset.append({"rule": "alignment", "ids": (id1, id2), "parameter":parameter})
             
-            #element 1 left of element 2
-
         elif "element" in rule and "from" in rule:
             id1 = rule.split()[1]
             id2 = rule.split()[-1]
@@ -212,9 +217,7 @@ def parse_rules(rules):
                 ruleset.append({"rule": "distance", "ids": (id1, id2), "parameter":parameter + dist})
             else:
                 print "Error parsing line " + str(rules.index(rule)+1)
-            
-            #element 1 no more than 100px from element 2
-            
+
         elif "element" in rule and "than" in rule and "of" in rule and ("width" in rule or "hight" in rule or "size" in rule):
             id1 = rule.split()[3]
             id2 = rule.split()[-1]
@@ -229,14 +232,10 @@ def parse_rules(rules):
             else:
                 print "Error parsing line " + str(rules.index(rule)+1)
             
-            #width of element 1 more than element 2    
-            
         elif "element" in rule and "contains" in rule:
             id = rule.split()[1]
             text = rule.split('"')[1]
             ruleset.append({"rule": "text", "ids": id1, "parameter":text})            
-            
-            #element 2 contains "checkout"
 
         else:
             if rule:
@@ -244,6 +243,7 @@ def parse_rules(rules):
     return ruleset
 
 def distance(elem1, elem2):
+    #calculate the euclidean distance
 	return int(round(math.sqrt((elem1["center"][X] - elem2["center"][X])**2 + (elem1["center"][Y] - elem2["center"][Y])**2)))
 
 def add_recommendation(rule):

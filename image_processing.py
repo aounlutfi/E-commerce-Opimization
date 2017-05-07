@@ -11,6 +11,7 @@ from skimage.segmentation import felzenszwalb
 from skimage.segmentation import mark_boundaries
 from skimage.util import img_as_float, img_as_ubyte
 
+#Constants 
 TOP = 0
 LEFT = 1
 RIGHT = 2
@@ -28,12 +29,13 @@ def image_processing(image, verbose=False, debug=False):
     print "---NEW IMAGE---"
 
     time_start = time.time()
-
+    #main processing 
     elements, seg_num, seg_times = find_buttons_seg(image, verbose)
 
     time_end = time.time()
-
+    #debugging and logging data
     if debug""
+        #store elements to file
         elem = "\n-------------------NEW TEST-------------------------------\n"
         elem += "Elements " + str(len(elements)) + " :\n"
         for element in elements:
@@ -46,15 +48,19 @@ def image_processing(image, verbose=False, debug=False):
             elem += "-------\n"
         elem += "\n-----------------END OF TEST-------------------------------\n"
 
+        #write to file
         file = open("tests/elements.txt", 'a')
         file.write(elem)
         file.close()
 
+        #store time data to files
+        #calculate time data
         total_time = time_end-time_start
         total_seg_time = sum(seg_times)
         avg_seg_time = total_seg_time/seg_num
         pp_time = total_time - total_seg_time
 
+        #store time data
         debug = "\n-------------------NEW TEST-------------------------------\n"
         debug += "Total Time: " + str(total_time) + "\n"
         debug += "Pre-processing Time: " + str(pp_time) + "\n"
@@ -64,6 +70,7 @@ def image_processing(image, verbose=False, debug=False):
         debug += "Total Number of Elements: " + str(len(elements)) + "\n"
         debug += "\n-----------------END OF TEST-----------------------------\n"
 
+        #write to file
         file = open("tests/image_processing_debug.txt", 'a')
         file.write(debug)
         file.close()
@@ -75,6 +82,7 @@ def find_buttons_seg(image, verbose=False):
 
     id = 0
 
+    #apply edge enhancing filter
     kernel_edge_enhance = np.array([[-1, -1, -1, -1, -1],
                                  [-1, 2, 2, 2, -1],
                                  [-1, 2, 8, 2, -1],
@@ -82,6 +90,7 @@ def find_buttons_seg(image, verbose=False):
                                  [-1, -1, -1, -1, -1]]) / 8.0
     image = cv2.filter2D(image, -1, kernel_edge_enhance)
 
+    #segment image into segments
     img = img_as_float(image)
     segments = felzenszwalb(img, scale=500, sigma=6, min_size=250)
     num_segments =  len(np.unique(segments))
@@ -95,13 +104,18 @@ def find_buttons_seg(image, verbose=False):
     seg_time_finish = []
     elements = []
 
+    #template for visa checkout
     template = cv2.imread("vco_template.jpg",cv2.IMREAD_GRAYSCALE)
 
+    #go through each element
     for n in range(0, num_segments):
         seg_time_start.append(time.time())
 
+        #obtain segment boundaries
         boundries = find_segment_corners(segments, n)
         segment_image = image[boundries[LEFT]:boundries[RIGHT], boundries[BUTTOM]:boundries[TOP]]
+
+        #check if segment is too small, then ignore
         if abs(boundries[LEFT]-boundries[RIGHT])<10 or abs(boundries[BUTTOM]-boundries[TOP]) < 10:
             print "segment " + str(n) + " too small to process"
         else:
@@ -111,7 +125,9 @@ def find_buttons_seg(image, verbose=False):
                     print text
                     plt.imshow(segment_image), plt.show()
                 
+                #match segment with visa checkout template
                 if match_template(template, segment_image, verbose):
+                    #if segment is too large ignore, else the add a visa checkout segment
                     if abs(boundries[LEFT]-boundries[RIGHT])<250 and abs(boundries[BUTTOM]-boundries[TOP])<1000:
                         elements.append(add_element(boundries, VCO, "Visa Checkout", id))
                         id+=1
@@ -119,8 +135,10 @@ def find_buttons_seg(image, verbose=False):
                     else:
                         print "segment" + str(n) + " too large for visa checkout"
                 else:
+                    #obtain text using OCR
                     text = OCR(segment_image)
 
+                    #string constants to search
                     cnt = "continue"
                     shp = "shopping"
                     chk = "checkout"
@@ -132,7 +150,7 @@ def find_buttons_seg(image, verbose=False):
                     back = "back"
                     cncl = "cancel"
                     
-
+                    #check if text length less than 4, then check for each constant, if there is a match, add the relevant element
                     if(len(text.split())<4):
                         if (chk in text.split() and visa not in text.split()):
                             elements.append(add_element(boundries, CHK, text, id))
@@ -179,7 +197,8 @@ def find_buttons_seg(image, verbose=False):
     return elements, num_segments, list(map(operator.sub, seg_time_finish, seg_time_start))
 
 def add_element(boundries, name, text, id):
-    
+    #add returns a new element dictionary as per the input details, calculates the center and dimentions from the boundaries
+
     center = calculate_center(boundries[TOP], boundries[BUTTOM], boundries[LEFT], boundries[RIGHT])
     dimentions = calculate_dimentions(boundries[TOP], boundries[BUTTOM], boundries[LEFT], boundries[RIGHT])
 
@@ -188,7 +207,7 @@ def add_element(boundries, name, text, id):
     return element
 
 def find_segment_corners(array, segment):
-
+    #returns a touple indicating the boundaries of the segment
     #find segment boundries
     width = len(array[0])
     found = []
@@ -212,28 +231,34 @@ def find_segment_corners(array, segment):
     return boundry_list
 
 def calculate_center(top, buttom, left, right):
+    #calculates the center from 4 boundaries
     x = (top + buttom)/2
     y = (left + right)/2
     center = (x,y)
     return center
 
 def calculate_dimentions(top, buttom, left, right):
+    #calculates the dimentions from 4 boundaries
     h = (top - buttom)
     w = (right - left)
     dimentions = (h,w)
     return dimentions
 
 def match_template(img1, img2, verbose = False):
+    #matches 2 images using sift keypoints descriptor 
     img2 = cv2.copyMakeBorder(img2, 100, 100, 100, 100, cv2.BORDER_CONSTANT, value=0)
 
+    #detect keypoints and calculate descriptors
     sift = cv2.SIFT()
     kp1, des1 = sift.detectAndCompute(img1,None)
     kp2, des2 = sift.detectAndCompute(img2,None)
 
+    #configure the FLANN matcher
     FLANN_INDEX_KDTREE = 0
     index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 5)
     search_params = dict(checks = 50)
 
+    #obtain the matches
     flann = cv2.FlannBasedMatcher(index_params, search_params)
     matches = flann.knnMatch(des1,des2,k=2)
 
@@ -243,7 +268,7 @@ def match_template(img1, img2, verbose = False):
         if m.distance < 0.7*n.distance:
             good.append(m)
 
-
+    #identify if enough matches exist
     MIN_MATCH_COUNT = 10
     if len(good)>MIN_MATCH_COUNT:
         if verbose:
@@ -268,10 +293,12 @@ def match_template(img1, img2, verbose = False):
 
   
 def OCR(img):
-    
+    #obtain text using Tesseract OCR engine
     img = (img*255).astype(int)  
     img = Image.fromarray(np.uint8(img*255))
+    #python wrapper for Tesseract
     text = image_to_string(img)
+    #clean and format text
     text = "".join([s for s in text.strip().splitlines(True) if s.strip("\r\n").strip()])
     text = text.encode('ascii', 'ignore').decode('ascii')
     text = text.lower()

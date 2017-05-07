@@ -14,14 +14,17 @@ W = 1
 
 def modeling(elements, image = None, verbose = False):
 	
+	#remove redundant elements
 	elements = clean_duplicates(elements, verbose)
 	print "number of clean elements: " + str(len(elements))
+	#setup graph
 	G = nx.Graph()
 	G.clear()
 
 	i = 0
 	labels = {}
 	positions = []
+	#attach elements to nodes
 	for element in elements:
 		G.add_node(i)
 		G.node[i] = element
@@ -33,6 +36,7 @@ def modeling(elements, image = None, verbose = False):
 	
 	dist = []
 	i = 0
+	#attach distances to edges
 	for element in elements:
 		temp = list(elements)
 		temp.remove(element)		
@@ -56,6 +60,7 @@ def modeling(elements, image = None, verbose = False):
 				if e:
 					print e
 	
+	#save model details
 	model = "\n-------------------MODEL-------------------------------\n"
 	model += "nodes: " + str(G.number_of_nodes()) + "\n"
 	for i in range(0, G.number_of_nodes()):
@@ -70,16 +75,19 @@ def modeling(elements, image = None, verbose = False):
 			if e:
 				model += str(e) + "\n"
 	
+	#save to file
 	file = open("tests/model.txt", 'a')
 	file.write(model)
 	file.close()
 
+	#draw model 
 	nx.draw_networkx_edges(G, positions)
 	nx.draw_networkx_edge_labels(G, positions,  font_size = 6)
 	nx.draw_networkx_nodes(G, positions, node_size=500, alpha=0.7)
 	nx.draw_networkx_labels(G,positions,labels, font_color='w')
 	if image is not None:
 		plt.imshow(image, "gray")
+	#save model into an image
 	try:
 		if verbose:
 			plt.show()
@@ -91,7 +99,8 @@ def modeling(elements, image = None, verbose = False):
 	return (G, positions, labels)
 
 def clean_duplicates(elements, verbose):
-	
+	#to clean duplicates, go through each element, and look through the remaining elemnts and see if there is a match
+	#if a match exists, remove the duplicate
 	for element in elements:
 		temp = list(elements)
 		temp.remove(element)
@@ -107,10 +116,12 @@ def clean_duplicates(elements, verbose):
 					print 'kept ' + str(elem['id']) 
 
 	id = 0
+	#reset ids of elements
 	for element in elements:
 		element["id"] = id
 		id += 1
 	return elements
 
 def distance(elem1, elem2):
+	#calculate the distance using euclidean distance
 	return int(round(math.sqrt((elem1["center"][X] - elem2["center"][X])**2 + (elem1["center"][Y] - elem2["center"][Y])**2)))
