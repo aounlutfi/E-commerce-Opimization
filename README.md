@@ -30,18 +30,23 @@ as the main script. Also, a folder named tests is needed to output the results a
 to be in the same directory as the main script.
 
 ### Imports
+```python
 import src.web_classification as clas
 import src.web_capture as cap
 import src.image_processing as im
 import src.modeling as m
 import src.evaluation as ev
-
+```
 ### Classification
+```python
 classification = clas.web_classification(html)
-
+```
 ### Modeling and 
+```python
 elements = im.image_processing(image)
 model = m.modeling(elements, image)
-
+```
 ### Evaluation
+```python
 score, recommendations = ev.score(model, classification)
+```

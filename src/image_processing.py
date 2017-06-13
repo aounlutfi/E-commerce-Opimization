@@ -120,10 +120,12 @@ def find_buttons_seg(image, verbose=False):
     num_segments =  len(np.unique(segments))
     print "number of Segments: " + str(num_segments)
 
+    segmented_img = img_as_ubyte(mark_boundaries(img, segments))
+    plt.imshow(segmented_img)
+    
     try:
         if verbose:
-            segmented_img = img_as_ubyte(mark_boundaries(img, segments))
-            plt.imshow(segmented_img), plt.show()
+            plt.show()
         plt.savefig("tests/" + str(time.time()) + "_segmented.jpg")
     except Exception, e:
         plt.savefig("tests/" + str(time.time()) + "_segmented.jpg")
