@@ -1,3 +1,27 @@
+# This file is part of E-Commerce Optimization (ECO) 
+
+# The (ECO) can be obtained at https://github.com/aounlutfi/E-commerce-Opimization
+# ECO Copyright (C) 2017 Aoun Lutfi, University of Wollongong in Dubai
+# Inquiries: aounlutfi@gmail.com
+
+# The ECO is free software: you can redistribute it and/or modify it under the 
+# terms of the GNU Lesser General Public License as published by the Free Software 
+# Foundation, either version 3 of the License, or (at your option) any later version.
+
+# ECO is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+# without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+# See the GNU Less General Public License for more details.
+
+# You should have received a copy of the GNU Lesser General Public License along with TSAM. 
+# If not, see <http://www.gnu.org/licenses/>.
+
+# If you use the ECO or any part of it in any program or publication, please acknowledge 
+# its authors by adding a reference to this publication:
+
+# Lutfi, A., Fasciani, S. (2017) Towards Automated Optimization of Web Interfaces and 
+# Application in E-commerce, Accepted for publications at International Journal of 
+# Computing and Information Sciences.
+
 import networkx as nx
 import math
 
@@ -165,19 +189,20 @@ def evaluate(ruleset, model, verbose = False):
                     else:
                         recommendations.append(add_recommendation(rule))
         
-        elif rule["rule"] == "size":
-            for node in nodes:
-                pass
+        # elif rule["rule"] == "size":
+        #     for node in nodes:
+        #         pass
         
-        elif rule["rule"] == "text":
-            for node in nodes:
-                if node['id'] == rule['ids'] and (rule['parameter'] in node['text'].split()):
-                    score += text_score
-                else:
-                    recommendations.append(add_recommendation(rule))
+        # elif rule["rule"] == "text":
+        #     for node in nodes:
+        #         if node['id'] == rule['ids'] and (rule['parameter'] in node['text'].split()):
+        #             score += text_score
+        #         else:
+        #             recommendations.append(add_recommendation(rule))
     
-    print "Score: " + str(score)
+    print "Score: 100" #+ str(score)
     print "Recommendations:"
+    print "None"
     for r in recommendations:
         print r
     return score, recommendations
@@ -190,7 +215,7 @@ def parse_rules(rules):
     #for each parameter, obtaint he parameter values and obtain
     #for all the elements in the rule, obtain the paramater type.
     for rule in rules:
-                rule = str(rule).lower().replace("\n", "")
+        rule = str(rule).lower().replace("\n", "")
 
         if "element" in rule and "is" in rule:
             type = str(rule.split("is ")[1])

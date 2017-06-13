@@ -1,11 +1,26 @@
 
 -------------------MODEL-------------------------------
-nodes: 3
-{'center': [1410, 993], 'text': 'secure checknut', 'dimentions': [493, 125], 'boundries': [1657, 931, 1056, 1164], 'type': 'checkout', 'id': 0}
-{'center': [897, 993], 'text': 'continue shopping', 'dimentions': [490, 121], 'boundries': [1142, 933, 1054, 652], 'type': 'continue shopping', 'id': 1}
-{'center': [1983, 981], 'text': 'Visa Checkout', 'dimentions': [495, 82], 'boundries': [2231, 940, 1022, 1736], 'type': 'visa checkout', 'id': 2}
-links: 3
-[(0, 1), (0, 2), (1, 2)]
-513
-573
-1086
+nodes: 6
+{'center': (1170, 157), 'text': u'checkout', 'dimentions': (350, 83), 'boundries': (1345, 116, 199, 995), 'type': 'checkout', 'id': 0}
+{'center': (768, 158), 'text': 'Visa Checkout', 'dimentions': (345, 83), 'boundries': (941, 117, 200, 596), 'type': 'visa checkout', 'id': 1}
+{'center': (147, 160), 'text': u'continue shoppiug', 'dimentions': (248, 43), 'boundries': (271, 139, 182, 23), 'type': 'checkout', 'id': 2}
+{'center': (768, 1130), 'text': 'Visa Checkout', 'dimentions': (345, 82), 'boundries': (941, 1089, 1171, 596), 'type': 'visa checkout', 'id': 3}
+{'center': (1170, 1130), 'text': u'checkout', 'dimentions': (320, 52), 'boundries': (1330, 1104, 1156, 1010), 'type': 'checkout', 'id': 4}
+{'center': (155, 1133), 'text': u'continue shopping', 'dimentions': (247, 45), 'boundries': (279, 1111, 1156, 32), 'type': 'continue shopping', 'id': 5}
+links: 15
+[(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 2), (1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5), (3, 4), (3, 5), (4, 5)]
+402
+1023
+621
+1053
+972
+1152
+973
+1052
+1410
+402
+1408
+1152
+973
+613
+1015

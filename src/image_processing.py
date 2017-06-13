@@ -1,3 +1,27 @@
+# This file is part of E-Commerce Optimization (ECO) 
+
+# The (ECO) can be obtained at https://github.com/aounlutfi/E-commerce-Opimization
+# ECO Copyright (C) 2017 Aoun Lutfi, University of Wollongong in Dubai
+# Inquiries: aounlutfi@gmail.com
+
+# The ECO is free software: you can redistribute it and/or modify it under the 
+# terms of the GNU Lesser General Public License as published by the Free Software 
+# Foundation, either version 3 of the License, or (at your option) any later version.
+
+# ECO is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+# without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+# See the GNU Less General Public License for more details.
+
+# You should have received a copy of the GNU Lesser General Public License along with TSAM. 
+# If not, see <http://www.gnu.org/licenses/>.
+
+# If you use the ECO or any part of it in any program or publication, please acknowledge 
+# its authors by adding a reference to this publication:
+
+# Lutfi, A., Fasciani, S. (2017) Towards Automated Optimization of Web Interfaces and 
+# Application in E-commerce, Accepted for publications at International Journal of 
+# Computing and Information Sciences.
+
 import numpy as np
 import cv2
 import time
@@ -34,7 +58,7 @@ def image_processing(image, verbose=False, debug=False):
 
     time_end = time.time()
     #debugging and logging data
-    if debug""
+    if debug:
         #store elements to file
         elem = "\n-------------------NEW TEST-------------------------------\n"
         elem += "Elements " + str(len(elements)) + " :\n"
@@ -96,9 +120,13 @@ def find_buttons_seg(image, verbose=False):
     num_segments =  len(np.unique(segments))
     print "number of Segments: " + str(num_segments)
 
-    if verbose:
-        segmented_img = img_as_ubyte(mark_boundaries(img, segments))
-        plt.imshow(segmented_img), plt.show()
+    try:
+        if verbose:
+            segmented_img = img_as_ubyte(mark_boundaries(img, segments))
+            plt.imshow(segmented_img), plt.show()
+        plt.savefig("tests/" + str(time.time()) + "_segmented.jpg")
+    except Exception, e:
+        plt.savefig("tests/" + str(time.time()) + "_segmented.jpg")
 
     seg_time_start = []
     seg_time_finish = []
