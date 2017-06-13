@@ -41,7 +41,7 @@ import src.evaluation as ev
 ```python
 classification = clas.web_classification(html)
 ```
-### Modeling and 
+### Modeling
 ```python
 elements = im.image_processing(image)
 model = m.modeling(elements, image)
