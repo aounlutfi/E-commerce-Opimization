@@ -29,7 +29,7 @@ import operator
 
 import matplotlib.pyplot as plt
 
-from pytesser import image_to_string
+from pytesseract import image_to_string
 from PIL import Image, ImageOps
 from skimage.segmentation import felzenszwalb
 from skimage.segmentation import mark_boundaries
@@ -126,9 +126,9 @@ def find_buttons_seg(image, verbose=False):
     try:
         if verbose:
             plt.show()
-        plt.savefig("tests/" + str(time.time()) + "_segmented.jpg")
+        plt.savefig("tests/" + str(time.time()) + "_segmented.jpg", dpi=900)
     except Exception, e:
-        plt.savefig("tests/" + str(time.time()) + "_segmented.jpg")
+        plt.savefig("tests/" + str(time.time()) + "_segmented.jpg", dpi=900)
 
     seg_time_start = []
     seg_time_finish = []
@@ -279,7 +279,7 @@ def match_template(img1, img2, verbose = False):
     img2 = cv2.copyMakeBorder(img2, 100, 100, 100, 100, cv2.BORDER_CONSTANT, value=0)
 
     #detect keypoints and calculate descriptors
-    sift = cv2.SIFT()
+    sift = cv2.xfeatures2d.SIFT_create()
     kp1, des1 = sift.detectAndCompute(img1,None)
     kp2, des2 = sift.detectAndCompute(img2,None)
 

@@ -2,6 +2,9 @@ import cv2
 import time
 import json
 
+import matplotlib
+matplotlib.use('agg')
+
 import src.web_classification as clas
 import src.web_capture as cap
 import src.image_processing as im

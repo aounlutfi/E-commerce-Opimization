@@ -15,14 +15,9 @@ The aim of this project is to develop a system that automotically score and sugg
 Currently the system only supports 5 e-commerce webstie types (Travel, Food, Hotels, Tickets, Generic) and can only identify "continue shopping" buttons and "proceed to checkout" buttons.
 
 ## Dependencies
-The system requires the following to function fully:
 
-  1. PhantomJS (Bundled for Windows in the source code)
-  3. Tesseract OCR (Bundled for Windows in the source code)
-  2. NLTK
-  3. OpenCV3 with contrib_lib or OpenCV2
-  4. networkX
-  5. Skimage
+This project is build for Python 2. You can install all the requirements from requirements.txt
+
 
 ## Examples
 It is important to note that to ensure the template image and rules.txt are in the same directory 

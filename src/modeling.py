@@ -115,9 +115,9 @@ def modeling(elements, image = None, verbose = False):
 	try:
 		if verbose:
 			plt.show()
-		plt.savefig("tests/" + str(time.time()) + "_model.jpg")
+		plt.savefig("tests/" + str(time.time()) + "_model.jpg", dpi=900)
 	except Exception, e:
-		plt.savefig("tests/" + str(time.time()) + "_model.jpg")
+		plt.savefig("tests/" + str(time.time()) + "_model.jpg", dpi=900)
 
 	plt.clf()
 	return (G, positions, labels)
